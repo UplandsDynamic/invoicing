@@ -1,0 +1,182 @@
+@page {
+    @top-right {
+        content: 'Page ' counter(page);
+    }
+}
+
+body {
+    font-family: "DejaVu Sans Mono", monospace;
+    font-size: 12px;
+}
+
+.pagebreak {
+    page-break-before: always;
+}
+
+hr {
+    margin: 1em 0 1em 0;
+}
+
+div {
+    margin: 1em 0 1em 0;
+}
+
+h3.title_text {
+    display: block;
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 1em;
+    margin: 2em 0 0 0;
+}
+
+h3.inline_title {
+    display: inline!important;
+}
+
+h3.invoice_settlement_details {
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    border-bottom: 1px dashed black;
+    padding-bottom: 0.5em;
+}
+
+header {
+    text-align: left;
+}
+
+header div#company_name {
+    vertical-align: top;
+    font-size: 4.5em;
+    text-align: left;
+    margin: 0;
+}
+
+header div#account_form_business_logo {
+    display: block;
+    position: relative;
+    float: left;
+    margin: 0 1em 0 0;
+}
+
+header div#document_type {
+    display: block;
+    text-align: right;
+    font-size: 3em;
+    margin: 0;
+}
+
+div#invoice_number {
+    text-align: right;
+}
+
+ul.item_details {
+    margin: 0 0 0 1em;
+}
+
+div.row {
+    margin: 0;
+    display: block;
+}
+
+div.heading {
+    display: inline;
+    margin: 0 0 1em 0;
+}
+
+div.heading-block {
+    display: block !important;
+}
+
+div.heading:after {
+    content: ':';
+}
+
+span.address_item {
+    display: block;
+}
+
+div.general_item {
+    display: inline;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: None;
+    width: 100%
+}
+
+ul.invoice_items {
+    margin-bottom: 2em;
+}
+
+ul.invoice_items li {
+    margin-top: 0.5em;
+}
+
+
+ul#pdf_footer_services {
+    list-style: disc;
+    margin-left: 2em;
+}
+
+ul#banking_details {
+    margin-left: 2em;
+}
+
+ul.pdf_footer_services h3 {
+    display: block;
+    margin: 3em 0 2em 0;
+    padding-bottom: 0.5em;
+    border-bottom: 3px dotted black;
+    text-align: center;
+}
+
+span.fieldname:after {
+    content: ': '
+}
+
+span.fieldname {
+    font-weight: bold;
+}
+
+table#invoice_general_details {
+    width: 100%;
+    font-size: 0.8em;
+}
+
+table#invoice_general_details td, table#invoice_general_details th {
+    border: 1px solid black;
+    padding: 1em;
+}
+
+table#invoice_general_details span.fieldname {
+    font-weight: bold;
+}
+
+table#invoice_totals {
+    width: 100%;
+    page-break-inside: avoid;
+}
+
+table#invoice_totals td, table#invoice_totals th {
+   border: 1px solid black;
+    padding: 1em;
+}
+
+table#invoice_totals td:last-child, table#invoice_totals th:last-child {
+    text-align: right;
+}
+
+table#invoice_totals td {
+    padding: 1em;
+}
+
+table#invoice_totals td.grandtotal {
+    font-weight: bolder;
+    font-size: 3em;
+}
+div.section_block {
+    margin: 0 0 1em 0;
+}

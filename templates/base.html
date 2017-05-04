@@ -1,0 +1,217 @@
+{% load cache %}
+{% cache default_template_frag_cache_timeout base_head_and_menu user.get_username %}
+    {% load i18n %}
+    {% load l10n %}
+    {% load tz %}
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_messages %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head><!-- Loads static path files -->
+        {% load static %}
+        <!-- javascript -->
+        <script src="{% static 'js/vendor/jquery/3.1.1/jquery-3.1.1.min.js' %}"></script>
+        {% bootstrap_javascript %}  <!-- load AFTER jquery js and BEFORE jquery-ui js, otherwise won't work! -->
+        <script src="{% static 'js/vendor/jquery/ui/1.12.1/jquery-ui.min.js' %}"></script>
+        <!-- css -->
+        <link rel="stylesheet" type="text/css" href="{% static 'js/vendor/jquery/ui/1.12.1/jquery-ui.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <!-- images -->
+        <link rel="shortcut icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% if head_title %}{{ head_title }}{% else %}{{ default_head_title }}{% endif %}</title>
+    </head>
+    <body>
+    <div class="container-fluid main_body_container">
+    <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1 col-md-1 col-lg-1"></div>
+            <div class="col-sm-11 col-md-11 col-lg-11">
+                {% if site_logo_desc %}
+                    <a href="{{ site_logo_url }}">
+                        <img src="{{ site_logo }}"
+                             alt="{{ site_logo_desc|safe }}"
+                             class="img-fluid img-responsive pull-left" id="header_logo"/>
+                    </a>
+                {% else %}
+                    <a href="{{ default_site_logo_url }}">
+                        <img src="{{ default_site_logo }}"
+                             alt="{{ default_logo_desc|safe }}"
+                             class="img-responsive img-fluid pull-left" id="header_logo"/>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1 col-md-1 col-lg-1"></div>
+            <div class="col-sm-10 col-md-10 col-lg-10">
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid" id="navbar_container">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <!-- header -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                            data-target="#topNavBar">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    {#            <div class="navbar-brand">#}
+                                    {#                <a href="{% url 'home' %}">#}
+                                    {#                  {{ default_site_name|title }}#}
+                                    {#                </a>#}
+                                    {#            </div>#}
+                                </div>
+                                <!-- nav bar items that hide when collapsed -->
+                                <div class="collapse navbar-collapse" id="topNavBar">
+                                    <ul class="nav navbar-nav">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                               aria-haspopup="true"
+                                               aria-expanded="false">Website Menu<span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                {% for p in menu_items %}
+                                                    {% if p.display_menu %}
+                                                        <li><a href="/{{ p.path }}">{{ p.menu_name }}</a></li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                               aria-haspopup="true"
+                                               aria-expanded="false">Admin<span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                {% if user.is_authenticated %}
+                                                    <li class="">
+                                                        <a href="{% url 'logout' %}?next={{ request.path }}">
+                                                            <span class="glyphicon glyphicon-log-out"></span> {% trans 'Logout' %}
+                                                        </a>
+                                                    </li>
+                                                    {% if user.is_staff %}
+                                                        {% if user.is_superuser %}
+                                                            <li class="">
+                                                                <a href="/adminardo">
+                                                                <span class="glyphicon glyphicon-lock"
+                                                                      aria-hidden="true"></span>
+                                                                    {% trans 'Admin' %}
+                                                                </a>
+                                                            </li>
+                                                        {% endif %}
+                                                        <li class="">
+                                                            <a href="{% url 'invoicing' %}">
+                                                                <span class="glyphicon glyphicon-book"></span> {% trans 'Invoicing' %}
+                                                            </a>
+                                                        </li>
+                                                    {% endif %}
+                                                {% else %}
+                                                    <li class="">
+                                                        <a href="{% url 'login' %}?next={{ request.path }}">
+                                                            <span class="glyphicon glyphicon-log-in"
+                                                                  aria-hidden="true"></span>
+                                                            {% trans 'Login' %}
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+                                                <li class="">
+                                                    <a href="{% url 'set_timezone' %}">
+                                                        <span class="glyphicon glyphicon-time"></span> {% trans 'Set Timezone' %}
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-sm-1 col-md-1 col-lg-1"></div>
+        </div>
+    </div>
+{% endcache %}
+<div class="container-fluid body_container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            {% block the_body %}{% endblock %}
+        </div>
+    </div>
+</div>
+<div class="container-fluid footer_container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="out-of-panel-footer">
+                {% cache default_template_frag_cache_timeout base_footer %}
+                    <div id="footer_text">
+                        <div id="footer_blurb">
+                            <small>
+                                {% if footer_text %}{{ footer_text|capfirst|safe }}
+                                {% else %}{{ default_footer_text|capfirst|safe }}{% endif %}
+                            </small>
+                        </div>
+                    </div>
+                    <div id="footer_links">
+                        <hr>
+                        {{ footer_links|safe }}
+                    </div>
+                {% endcache %}
+                <div id="client_ip">
+                    <small>
+                        {% if request.session.ip %}
+                            {{ default_client_ip_blurb }}: {{ request.session.ip|safe }}
+                        {% else %}
+                            {{ no_client_ip_blurb }}
+                        {% endif %}
+                    </small>
+                </div>
+                <div id="client_timezone">
+                    <small>
+                        {% if user.is_authenticated %} <!-- only show tz if user logged in -->
+                            {{ client_timezone }}
+                        {% endif %}
+                    </small>
+                </div>
+                <div id="main_footer">
+                    <small>{{ default_main_footer|safe }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- scripts from child templates -->
+{% block scripts %}{% endblock %}
+<!-- base template scripts -->
+{% cache default_template_frag_cache_timeout base_scripts %}
+    <script>
+        $(document).ready(function () {
+            var mainBody = $('#main_body');
+            var oopFooter = $('div.out-of-panel-footer');
+
+            function init() {
+                /* fade in */
+                mainBody.show("fade", 1000);
+                oopFooter.show("fade", 1000);
+            }
+
+            /* RUN THE SCRIPTS */
+            init();
+        });
+        /* Browser back */
+        function goBack() {
+            window.history.go(-1);
+        }
+    </script>
+{% endcache %}
+</div>
+</div>
+</div>
+</body>
+</html>

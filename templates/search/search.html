@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load cache %}
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% load bootstrap3 %}
+{% block the_body %}
+    {% cache default_search_results_cache_ttl request.get_full_path request.get_full_path %}
+        <div class="container-fluid inner_body_container">
+            <div class="row">
+                <div class="col-sm-1 col-md-1 col-lg-1 left-sidebar">
+                    {% include 'snippets/leftsidebar.html' %}
+                </div>
+                <div class="col-sm-7 col-md-7 col-lg-7">
+                    <div id="main_body" class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h2>{{ panel_heading|title|safe }}</h2>
+                        </div>
+                        <div class="panel-body">
+                            {% if status_message %}
+                                <div class="alert alert-success message">{{ status_message }}</div>
+                            {% endif %}
+                            {% if error_message %}
+                                <div class="alert alert-danger message">{{ error_message }}</div>
+                            {% endif %}
+                            <!-- start main view data -->
+                            <div id="search_form">
+                                <form method="get" action="" role="form" id="search_form">
+                                    <div class="container-fluid">
+                                        <div class="row" id="results_row">
+                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                {% if query %}
+                                                    <h3>{{ results_heading|title }}</h3>
+                                                    <ul id="result_list">
+                                                        {% for result in page_obj.object_list %}
+                                                            <li class="result">
+                                                                <!-- note: result.object returns model's __str__.
+                                                                Also can reference field, e.g. result.object.company_name -->
+                                                                {#                                                            <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>#}
+
+                                                                {% if request.GET.models == 'invoicing.invoice' %}
+                                                                    <a href="{{ result_url }}{{ result.object.invoice_number }}">{{ result.object }}</a>
+                                                                {% else %}
+                                                                    <a href="
+                                                                            {{ result_url }}{{ result.object.id }}">{{ result.object }}</a>
+                                                                {% endif %}
+                                                            </li>
+                                                        {% empty %}
+                                                            <p>No results found.</p>
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% else %}
+                                                    {# Show some example queries to run, maybe query syntax, something else? #}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="row" id="search_row">
+                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                <div id="search_return_to_calling_url">
+                                                    <a class="btn btn-warning" onclick="goBack()">{{ search_back_link_blurb }}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                <div class="zws-red-alert">{{ form.non_field_errors }}</div>
+                                                <div class="zws-red-alert form-error"></div>
+                                                <div class="form-group search_form_group">
+                                                    {% for field in form.visible_fields %}
+                                                        <div class="input-group">
+                                                            <div class="label label-primary">{{ field.label }}</div>
+                                                            <div class="the_field">{{ field }}</div>
+                                                        </div>
+                                                        {% if field.errors %}
+                                                            <div class="alert alert-danger">{{ field.errors }}</div>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                                {% bootstrap_button "Search" button_type="submit" button_class="btn-success search_form_submit" %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- end main view data -->
+                        </div>
+                        <div class="panel-footer">
+                            <!-- pagination -->
+                            <div class="pagination">
+                                {% if page.has_previous or page.has_next %}
+                                    <div>
+                                        {% if page.has_previous %}
+                                            <a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo;
+                                        Previous{% if page.has_previous %}</a>{% endif %}
+                                        |
+                                        {% if page.has_next %}
+                                            <a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}
+                                        Next &raquo;{% if page.has_next %}</a>{% endif %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <!-- end pagination -->
+                            <!-- <hr id="panel_footer_bar"> -->
+                            {% if panel_footer %}
+                                <div class="alert alert-info">{{ panel_footer }}</div>
+                            {% else %}
+                                <div>{{ default_panel_footer }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4 right-sidebar">
+                    {% include 'snippets/rightsidebar.html' %}
+                </div>
+            </div>
+        </div>
+    {% endcache %}
+{% endblock %}

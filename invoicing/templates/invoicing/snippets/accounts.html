@@ -1,0 +1,75 @@
+{% load bootstrap3 %}
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% load invoicing_extras %}
+<div class="accounts_display">
+    <div class="view_accounts_blurb">
+        <p>{{ blurb }}</p>
+        <hr>
+    </div>
+    {% if accounts %}
+        {% for account in accounts %}
+            <div class="account_index" id="_{{ forloop.counter }}">
+                <ul>
+                    {% for field, value in account.items %}
+                        {% if field == 'Account name' or field == 'Account ID' %}
+                            <li id="_{{ forloop.parentloop.counter }}">{{ field }}: {{ value }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="account_data" id="_{{ forloop.counter }}">
+                <ul>
+                    {% if account|get_dict_value:'Business Logo' %}
+                        <li id="_{{ forloop.parentloop.counter }}">
+                            <span id="account_form_business_logo">
+                                <img src="{{ account|get_dict_value:'Business Logo'|get_img_url }}"
+                                     title="Business logo"/>
+                            </span>
+                        </li>
+                    {% endif %}
+                    {% for field, value in account.items %}
+                        {% if field != 'Account name' and field != 'Account ID' and field != 'account_id' and field != 'Business Logo' %}
+                            {% if field == 'Email notifications' %}
+                                <li id="_{{ forloop.parentloop.counter }}">{% trans 'Auto email notifications (+ PDFs)' %}:
+                                    {% if value %}{% trans 'Yes' %}{% else %}{% trans 'No' %}{% endif %}</li>
+                            {% else %}
+                                <li id="_{{ forloop.parentloop.counter }}">{{ field }}: {% if value %}{{ value }}{% endif %}</li>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <ul id="link_buttons">
+                    <!-- edit link -->
+                    <li class="account_record_link">
+                        <a class="btn btn btn-primary" href="
+
+
+                                {{ param_str }}{{ edit_account_param_str }}&{{ edit_account_id_param_str }}={{ account.account_id }}">{{ edit_account_blurb }}</a>
+                    </li>
+                    <!-- end edit link -->
+                    {% if account|get_dict_value:'Account type'|client_account %}
+                        <!-- view invoices link -->
+                        <li class="account_record_link">
+                            <a class="btn btn btn-primary" href="
+
+
+                                    {{ param_str }}{{ view_invoices_param_str }}&{{ edit_account_id_param_str }}={{ account.account_id }}">{{ view_invoices_blurb }}</a>
+                        </li>
+                        <!-- end view invoices link -->
+                        <!-- create invoice link -->
+                        <li class="account_record_link">
+                            <a class="btn btn btn-primary" href="
+                                    {{ param_str }}{{ new_invoice_param_str }}&{{ edit_account_id_param_str }}={{ account.account_id }}">{{ dash_button }} {{ account|get_dict_value:'Account name' }}</a>
+                        </li>
+                        <!-- end create invoice link -->
+                    {% endif %}
+                </ul>
+            </div>
+            <hr>
+        {% endfor %} <!-- end accounts loop -->
+    {% else %}
+        {{ no_results }}
+    {% endif %}  <!-- end accounts if -->
+</div> <!-- end accounts_display div -->

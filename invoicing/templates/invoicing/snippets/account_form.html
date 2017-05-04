@@ -1,0 +1,66 @@
+{% load bootstrap3 %}
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% load invoicing_extras %}
+<div class="invoicing-form">
+    <form role="form" id="account_form" action="" method="POST" enctype="multipart/form-data">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="zws-red-alert">{{ account_form.non_field_errors }}</div>
+                    <div class="zws-red-alert form-error">{{ account_form.errors }}</div>
+                    {% csrf_token %}
+                    <div class="form-group account_form_group">
+                        {% for field in account_form.visible_fields %}
+                            {% if field.label == 'Business Logo' %}
+                                <div class="input-group">
+                                    <div class="help_text">{{ field.help_text }}</div>
+                                    <div class="field-group">
+                                        <div class="label label-primary">{{ field.label }}</div>
+                                        <div class="the_field">{{ field }}</div>
+                                    </div>
+                                    {% if field.errors %}
+                                        <div class="alert alert-danger">{{ field.errors }}</div>
+                                    {% endif %}
+                                </div>
+                                {% if logo %}
+                                    <div id="account_form_business_logo">
+                                    <h3>{% trans 'Existing logo' %}</h3>
+                                        <img src="{{ logo }}" title="Business logo"/>
+                                    </div>
+                                {% endif %}
+                                {% elif field.label == 'Email notifications' %}
+                                <div class="input-group">
+                                    <div class="help_text">{{ field.help_text }}</div>
+                                    <div class="field-group">
+                                        <div class="label label-primary">{% trans 'Email (+ PDFs)' %}</div>
+                                        <div class="the_field">{{ field }}</div>
+                                    </div>
+                                    {% if field.errors %}
+                                        <div class="alert alert-danger">{{ field.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            {% else %}
+                                <div class="input-group">
+                                    <div class="help_text">{{ field.help_text }}</div>
+                                    <div class="field-group">
+                                        <div class="label label-primary">{{ field.label }}</div>
+                                        <div class="the_field">{{ field }}</div>
+                                    </div>
+                                    {% if field.errors %}
+                                        <div class="alert alert-danger">{{ field.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% for field in account_form.hidden_fields %}
+                        {{ field }}
+                    {% endfor %}
+                    {% bootstrap_button "Submit form" button_type="submit" button_class="btn-success account_form_submit" %}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

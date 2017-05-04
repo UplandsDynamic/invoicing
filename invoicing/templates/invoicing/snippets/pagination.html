@@ -1,0 +1,21 @@
+{% if total_pages %}
+    <ul class="pagination">
+        {% for p in total_pages %}
+            {% if request.GET.page == p|stringformat:"i" %}
+                <li class="active">
+                    <a href="{{ request.get_full_path }}&{{ page_str }}={{ p }}">{{ p }}</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{{ request.get_full_path }}&{{ param_str }}{{ request.GET.action }}&{{ page_str }}={{ p }}">{{ p }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% else %}
+    <ul class="pagination">
+        <li>
+            <a href="{{ request.get_full_path }}&{{ page_str }}=1">1</a>
+        </li>
+    </ul>
+{% endif %}

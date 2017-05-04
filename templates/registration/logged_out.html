@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% block the_body %}
+    <div class="container-fluid inner_body_container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6 registration_body">
+                <p>{% trans "You have been logged out." %}</p>
+                <p><a href="{% url 'login' %}">{% trans 'Log in again' %}</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

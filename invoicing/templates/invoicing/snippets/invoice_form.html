@@ -1,0 +1,50 @@
+{% load bootstrap3 %}
+<div class="invoicing-form">
+    <form role="form" id="invoice_form" action="" method="POST">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="zws-red-alert">{{ invoice_form.non_field_errors }}</div>
+                    {% if settings.DEBUG %}
+                        <div class="zws-red-alert form-error">{{ invoice_form.errors }}</div>
+                    {% endif %}
+                    {% csrf_token %}
+                    <div class="form-group client_form_group">
+                        {% for field in invoice_form.visible_fields %}
+                            {% if field.label == 'Invoice items' %}
+                                <div class="input-group">
+                                    <div class="help_text">{{ field.help_text }}</div>
+                                    <div class="field-group">
+                                        <div class="label label-primary">{{ field.label }}</div>
+                                        <div class="the_field">{{ field }}</div>
+                                    </div>
+                                    {% if field.errors %}
+                                        <div class="alert alert-danger">{{ field.errors }}</div>
+                                    {% endif %}
+                                    <div class="input-group" id="item_qty_input-group">
+                                        <div id="item_qty"></div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="input-group">
+                                    <div class="help_text">{{ field.help_text }}</div>
+                                    <div class="field-group">
+                                        <div class="label label-primary">{{ field.label }}</div>
+                                        <div class="the_field">{{ field }}</div>
+                                    </div>
+                                    {% if field.errors %}
+                                        <div class="alert alert-danger">{{ field.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% for field in invoice_form.hidden_fields %}
+                        {{ field }}
+                    {% endfor %}
+                    {% bootstrap_button invoice_submit_button_text button_type="submit" button_class="btn-success invoice_form_submit" %}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

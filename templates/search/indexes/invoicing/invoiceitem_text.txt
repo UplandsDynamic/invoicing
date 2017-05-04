@@ -1,0 +1,4 @@
+{{ object.item_name }}
+{{ object.desc }}
+{{ object.price }}
+{{ object.tax_status }}

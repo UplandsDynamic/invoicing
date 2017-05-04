@@ -1,0 +1,15 @@
+{% if left_sidebar_image %}
+    <div id="left_sidebar_image">
+        <a href="{{ left_sidebar_image_url }}">
+            <img src="{{ left_sidebar_image }}" class="left-sidebar-img img-responsive img-fluid img-rounded"
+                 alt="{{ left_sidebar_image_desc }}" title="{{ left_sidebar_image_desc }}"/>
+        </a>
+    </div>
+{% else %}
+    <div id="left_sidebar_image">
+        <a href="{{ default_left_sidebar_image_url }}">
+            <img src="{{ default_left_sidebar_image }}" class="left-sidebar-img img-responsive img-fluid img-rounded"
+                 alt="{{ default_left_sidebar_image_desc }}" title="{{ default_left_sidebar_image_desc }}"/>
+        </a>
+    </div>
+{% endif %}

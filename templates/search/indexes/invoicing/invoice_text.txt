@@ -1,0 +1,5 @@
+{{ object.client }}
+{{ object.datetime_issued }}
+{{ object.date_due }}
+{{ object.invoice_number }}
+{{ object.invoice_status }}

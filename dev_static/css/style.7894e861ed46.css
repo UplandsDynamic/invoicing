@@ -1,0 +1,790 @@
+/*
+Breakpoints:
+- mobile breakpoint (default bootstrap sm) is 768px.
+- custom breakpoint for hiding of left sidebar is 1080px.
+*/
+
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url("../fonts/Roboto-Bold.d329cc8b3466.ttf");
+}
+
+@font-face {
+    font-family: 'UbuntuMono-Bold';
+    src: url("../fonts/UbuntuMono-Bold.0734aff79a8a.ttf");
+}
+
+/* MAIN */
+
+body {
+    background-color: black;
+    color: #cccccc;
+    font-family: 'UbuntuMono-Bold', monospace;
+    font-size: 16px;
+}
+
+hr {
+    margin: 1em 0 1em 0;
+}
+
+h1 {
+    margin-bottom: 0em;
+}
+
+h2 {
+    font-size: 1.2em;
+    color: cornflowerblue;
+}
+
+h3 {
+    font-size: 1.1em;
+    color: darkred;
+}
+
+h1.small_h1 {
+    font-size: 1em;
+    margin-bottom: 1em;
+}
+
+h2.small_h2 {
+    font-size: 0.9em;
+    margin-bottom: 1em;
+}
+
+a:link {
+    color: cornflowerblue;
+    text-decoration: none;
+}
+
+a:hover {
+    color: greenyellow !important;
+    text-decoration: none;
+}
+
+a:visited {
+    color: cornflowerblue;
+}
+
+a:active {
+    color: darkred;
+    text-decoration: none;
+}
+
+/* EFFECTS */
+
+div#main_body {
+    display: none;
+}
+
+div.out-of-panel-footer {
+    display: none;
+}
+
+/* ICONS */
+span.glyphicon {
+    margin-right: 0.5em;
+}
+
+/* PANELS */
+
+.panel-primary {
+    background-color: black;
+    color: #cccccc;
+    font-family: 'UbuntuMono-Bold', monospace;
+    border: none;
+    margin: 1em 0 0 0;
+}
+
+.panel-primary ul {
+    list-style: none;
+    padding: 0;
+    margin: 1em 0 1em 0;
+}
+
+.panel-primary li {
+    padding-left: 1em;
+    margin-bottom: 0.5em;
+}
+
+.panel-primary li:before {
+    content: "\2605";
+    padding-right: 1em;
+    color: cornflowerblue;
+}
+
+.panel-primary li ul {
+    margin-top: 0.5em;
+}
+
+.panel-primary li ul li:before {
+    content: "\2605";
+    padding-right: 1em;
+    color: darkred;
+}
+
+.panel-primary .panel-heading {
+    background-color: black;
+    color: #cccccc;
+    border-bottom: none;
+    font-family: 'UbuntuMono-Bold', monospace;
+}
+
+@media only screen and (min-width: 1080px) {
+    .panel-primary .panel-heading {
+        border-left: 2px dotted greenyellow;
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .panel-primary .panel-body {
+        border-left: 2px dotted cornflowerblue;
+    }
+}
+
+.panel-primary .panel-footer {
+    background-color: #000000;
+    border: none;
+}
+
+.panel-primary .panel-footer hr#panel_footer_bar {
+    width: 25%;
+    border-top: 2px dotted greenyellow;
+}
+
+.panel-primary .panel-footer div.alert {
+    text-align: center;
+}
+
+/* OUT OF PANEL FOOTERS */
+
+div.out-of-panel-footer {
+    text-align: center;
+    margin-top: 1em;
+}
+
+div.out-of-panel-footer div#footer_text {
+    font-style: normal;
+    text-align: center;
+    font-size: 1em;
+    margin-bottom: 1em;
+    color: cornflowerblue;
+}
+
+div.out-of-panel-footer div#client_ip {
+    color: darkred;
+}
+
+div.out-of-panel-footer div#client_timezone {
+    margin-bottom: 1em;
+    color: darkred;
+}
+
+div.out-of-panel-footer div#footer_blurb {
+    margin-bottom: 1em;
+}
+
+div.out-of-panel-footer div#footer_links {
+    text-align: center;
+    font-size: 0.9em;
+    color: greenyellow;
+    margin-bottom: 1em;
+}
+
+div.out-of-panel-footer div#footer_links hr {
+    width: 50%;
+    margin: auto;
+    padding-bottom: 1em;
+    border-top: 2px dotted darkred;
+}
+
+/* FORMS */
+
+select {
+    margin-bottom: 1em;
+}
+
+form input {
+    margin-bottom: 1em;
+}
+
+div.form-info-small {
+    font-size: 0.8em;
+}
+
+div.contact_form_group {
+}
+
+form#contact_form div.label-primary {
+    font-size: 1em !important;
+}
+
+form#contact_form li:before {
+    content: none;
+}
+
+form#contact_form div.the_field {
+    margin-top: 1em;
+}
+
+form#contact_form div.label-primary {
+    font-size: 1em !important;
+}
+
+form#contact_form li:before {
+    content: none;
+}
+
+form#contact_form div.the_field {
+    margin-top: 1em;
+}
+
+form#stripe_form div.label-primary {
+    font-size: 1em !important;
+}
+
+form#stripe_form div.the_field {
+    margin-top: 1em;
+}
+
+form#stripe_form div.label-primary {
+    font-size: 1em !important;
+}
+
+form#stripe_form div.the_field {
+    margin-top: 0.5em;
+}
+
+form#stripe_form div.input-group {
+}
+
+form#stripe_form div.label {
+    display: block;
+    margin: 0.5em 0 0.5em 0;
+}
+
+form#stripe_form div.expiry_group span.the_field {
+    width: 35% !important;
+    display: inline-block !important;
+    float: None !important;
+}
+
+form#stripe_form div.expiry_group span.exp_divider {
+    display: inline-block !important;
+    vertical-align: top;
+    font-size: 1.5em;
+    float: None
+}
+
+div.invoicing-form {
+    border-top: 2px dotted #333333;
+    border-bottom: 2px dotted #333333;
+    padding: 1em 0 0.5em 0
+}
+
+div.invoicing-form div.the_field {
+    display: block;
+    width: 18em;
+}
+
+div.invoicing-form div.input-group {
+    margin-bottom: 0.5em;
+    background-color: #333333;
+    padding: 0.5em;
+}
+
+div.invoicing-form div.field-group {
+    display: flex
+}
+
+div.invoicing-form div.label {
+    margin: 0 0.25em 0.25em 0;
+    display: block;
+    padding: 1em;
+    width: 11em;
+    text-align: left;
+    white-space: normal;
+}
+
+div.invoicing-form div#item_qty div.label {
+    margin: 0 0.25em 0.25em 0;
+    display: block;
+    padding: 1em;
+    width: 21em;
+    text-align: left;
+    white-space: normal;
+}
+
+div.invoicing-form div#item_qty div.the_field {
+    display: block;
+    width: 5em;
+}
+
+div.invoicing-form div.help_text {
+    display: block;
+    margin: 0 0 0.5em 0;
+    font-size: 0.7em;
+    text-align: right;
+}
+
+div.invoicing-form select.invoice_date_widget {
+    display: inline-flex;
+    width: 5.5em;
+}
+
+div#search_form div.label {
+    margin-bottom: 0.25em;
+    display: block;
+    padding: 1em;
+    width: 11em;
+    text-align: left;
+    height: 3em;
+}
+
+div#search_form div.the_field {
+    display: block;
+    width: 15em;
+}
+
+div#search_form div.the_field input[type='search'] {
+    height: 3em;
+}
+
+div#search_form div.the_field input[type='checkbox'] {
+    height: 2em;
+}
+
+div#search_form div.input-group {
+    margin-bottom: 0.5em;
+    background-color: #333333;
+    padding: 0.5em;
+    display: flex;
+    min-height: 5em;
+}
+
+div#search_form ul {
+    list-style: none
+}
+
+div#search_form li:before {
+    /*content: url("/static/images/icon-addlink.d519b3bab011.svg");*/
+    content: None;
+}
+
+div#search_form ul#id_models {
+    display: block;
+}
+
+div#search_form ul#id_models label {
+    float: left;
+    margin-right: 1em;
+
+}
+
+div#search_form div#search_return_to_calling_url {
+    margin: 0 0 1em 0;
+    border-bottom: 2px dotted darkred;
+    padding: 1em 0 1em 0
+}
+
+form#right_search_form div.search_form_group {
+    display: inline-flex;
+}
+
+form#right_search_form div#right_search_button {
+    margin: 0 0 0 0.5em;
+}
+
+div#search_form div#results_row {
+    border-top: 2px dotted cornflowerblue;
+}
+
+div#search_form li.result {
+    border-top: 2px dotted greenyellow;
+    border-bottom: 2px dotted greenyellow;
+    margin: 1em 0 1em 0;
+    padding: 1em 0 1em 0;
+}
+
+/* BODY DIVS */
+
+div#main_body {
+}
+
+/* ALERTS & MESSAGES */
+
+.zws-red-alert ul li {
+    background-color: #f2dede !important;
+    color: #a94442 !important;
+    margin: 1em;
+    padding: 1em;
+    font-weight: bold;
+    font-size: 1.2em;
+    border-radius: 0.3em;
+    border: 0.1em solid #ebccd1;
+}
+
+/* NAVBAR OVERRIDES */
+
+.navbar {
+    border-radius: 0;
+    font-size: 1em;
+}
+
+.navbar-brand {
+    font-family: 'UbuntuMono-Bold', monospace;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul.dropdown-menu {
+    background-color: black;
+    border-left: 2px dotted cornflowerblue;
+    border-bottom: 2px dotted greenyellow;
+}
+
+ul.dropdown-menu li {
+    background-color: black;
+}
+
+ul.dropdown-menu li:hover {
+    background-color: cornflowerblue !important;
+}
+
+ul.dropdown-menu li a {
+    color: cornflowerblue;
+}
+
+ul.dropdown-menu li a:hover {
+    color: darkred !important;
+}
+
+ul.dropdown-menu li a:visited {
+    color: cornflowerblue;
+}
+
+ul.dropdown-menu li a:active {
+    color: darkgray !important;
+}
+
+/*.no-close .ui-dialog-titlebar-close {*/
+/*display: none*/
+/*}*/
+
+/* TAGLINE */
+div#logo_line {
+    font-family: 'UbuntuMono-Bold', monospace;
+    font-style: italic;
+    text-align: right;
+    border-bottom: 2px dotted greenyellow;
+    padding-bottom: 1em;
+}
+
+div#tagline {
+    margin: 1em 0 1em 0;
+    color: cornflowerblue;
+    font-size: 1em;
+    padding: 1em;
+    background-color: #fafafa;
+    border: 2px dotted darkred;
+}
+
+/* RIGHT SIDEBAR */
+
+div.right-sidebar {
+    margin: 1em 0 1em 0;
+    max-width: 350px;
+    border-left: 2px dotted cornflowerblue;
+}
+
+div.right-sidebar div#right_sidebar_blurb {
+    color: #ccc;
+    font-size: 0.9em;
+    font-style: italic;
+    margin: 1em 0 0 0;
+}
+
+div.right-sidebar img.right-sidebar-img {
+    max-height: 200px;
+}
+
+div.right-sidebar hr#right_sidebar_hr {
+    margin: 2em auto 1em auto;
+    width: 50%;
+    border-top: 2px dotted cornflowerblue;
+}
+
+div.right-sidebar ul#right_sidebar_links_list {
+    list-style: none;
+    padding-bottom: 1em;
+    margin: 0 0 1em 0;
+    border-bottom: 2px dotted greenyellow;
+}
+
+div.right-sidebar ul#right_sidebar_links_list li:before {
+    content: "\2605";
+    padding-right: 1em;
+    color: darkred;
+}
+
+div.right-sidebar span.small_sb_links {
+    font-size: 0.8em !important;
+}
+
+/* LEFT SIDEBAR */
+
+div.left-sidebar {
+    display: none;
+}
+
+@media only screen and (min-width: 1080px) {
+
+    div.left-sidebar {
+        display: block;
+    }
+
+    div.left-sidebar div#left_sidebar_blurb {
+    }
+
+    div.left-sidebar img.left-sidebar-img {
+        max-height: 120px;
+        margin: 1em 0 1em 0;
+    }
+}
+
+/* INNER BODY (APPLICATION TEMPLATES */
+div.inner_body_container {
+    margin-top: 1em;
+    max-width: 1750px;
+    border-top: 2px dotted greenyellow;
+}
+
+/*INVOICING */
+div#button_container {
+}
+
+div#button_container ul {
+    margin: 0;
+}
+
+div#button_container ul li:before {
+    content: '';
+    padding: 0;
+    margin: 0;
+}
+
+div#button_container ul li {
+    background: black !important;
+}
+
+div#button_container ul li a {
+    background: cornflowerblue !important;
+    color: white
+}
+
+div#button_container ul li a:hover {
+    background: white !important;
+    color: cornflowerblue;
+}
+
+div#button_container button {
+    margin: 0 0 0.5em 0;
+}
+
+button#dash_button, button#dash_action_button_1, button#dash_action_button_2 {
+    display: none;
+}
+
+ul#view_invoice_action_buttons a {
+    width: 18em;
+    text-align: left;
+}
+
+div.accounts_display ul#link_buttons a {
+    width: 18em;
+}
+
+div.accounts_display ul {
+    list-style: none;
+}
+
+div.accounts_display li:before {
+    content: none;
+}
+
+div.accounts_display hr {
+    border-top: 2px dotted darkred;
+}
+
+div.accounts_display div.account_data {
+    display: none;
+}
+
+div.accounts_display div.view_accounts_blurb p {
+    background-color: #333333;
+    color: white;
+    padding: 1em;
+}
+
+li.account_record_link, li.invoice_record_link:before {
+    content: None;
+}
+
+li.account_record_link a, li.invoice_record_link a {
+    color: white;
+    text-align: left;
+}
+
+li.account_record_link a:hover, li.invoice_record_link a:hover {
+    color: white !important;
+}
+
+li.account_record_link a:active, li.invoice_record_link a:active {
+    color: white !important;
+}
+
+/* POSTS */
+div.posts {
+    border-bottom: 2px dotted darkred;
+    margin-bottom: 1em;
+}
+
+div.posts small.posted_datetime {
+    display: block;
+    color: darkred;
+    margin: 0.5em 0 1em 0;
+}
+
+div.posts h2 {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+/* GITHUB PROJECTS */
+div.github_data {
+    margin: 0;
+}
+
+@media only screen and (min-width: 768px) {
+    div.project_index_link {
+        display: none;
+    }
+}
+
+div.project_index_link {
+    margin: 0 0 1em 0;
+    padding: 0.5em 0 0.5em 0;
+    font-size: 0.9em;
+    text-align: right;
+    border-top: 2px dotted cornflowerblue;
+}
+
+div.project_index_link a {
+    padding: 1em 0 1em 0;
+    border-bottom: 2px dotted darkred;
+}
+
+div.github_data div.project_intro h1 {
+    margin: 0 0 1em 0;
+}
+
+div.github_data div.document h1.title {
+    display: None;
+}
+
+div.github_data div.github_data_content {
+    margin: 1em 0 0 0;
+}
+
+div.github_data div.project_intro div.toplink {
+    margin: 0 0 1em 0;
+    padding: 0 0 1em 0;
+    border-bottom: 2px dotted greenyellow;
+}
+
+div.github_data h1 {
+    margin: 1em 0 1em 0;
+    font-size: 1.3em;
+}
+
+div.github_data h2 {
+    margin: 1em 0 1em 0;
+    font-size: 1.2em;
+}
+
+div.github_data h3 {
+    margin: 1em 0 1em 0;
+    font-size: 1.1em;
+}
+
+div.github_data small.last_commit {
+    display: block;
+    margin: 0 0 1em 0;
+}
+
+div.github_data div.repo_readme {
+    border-top: 2px dotted greenyellow;
+    padding-top: 1em;
+}
+
+div.github_data img {
+    margin: 0 0 1em 0;
+    max-height: 525px;
+}
+
+div.github_data div.project_links h3 {
+    margin: 0 0 1em 0;
+    color: darkred;
+}
+
+div.github_data div#proj_links {
+    margin-top: 1em;
+    border-top: 2px dotted darkred;
+}
+
+/* IMAGES */
+img#header_logo {
+}
+
+/* PAGINATION */
+ul.pagination li {
+    padding: 0 !important;
+}
+
+ul.pagination li:before {
+    content: none;
+}
+
+ul.pagination li a {
+    background-color: #fafafa;
+    color: cornflowerblue;
+    border: 1px dotted black;
+}
+
+ul.pagination li a:hover {
+    background-color: cornflowerblue;
+    color: #fafafa !important;
+    border: 1px dotted black;
+}
+
+ul.pagination li.active a:hover {
+    background-color: #fafafa;
+    color: cornflowerblue !important;
+    border: 1px dotted black;
+}
+
+ul.pagination li.active {
+    background-color: #fafafa;
+}
+
+ul.pagination li.active a {
+    border: 1px dotted #fafafa;
+}
+
+/* REGISTRATION */
+div.registration_body {
+    margin-top: 1em
+}
+

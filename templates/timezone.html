@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load cache %}
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% block the_body %}
+    {% cache default_template_frag_cache_timeout timezone request.get_full_path %}
+        <div class="container-fluid inner_body_container">
+            <div class="row">
+                <div class="col-sm-1 col-md-1 col-lg-1 left-sidebar">
+                    {% include 'snippets/leftsidebar.html' %}
+                </div>
+                <div class="col-sm-7 col-md-7 col-lg-7">
+                    <div id="main_body" class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h2>{{ panel_heading|title|safe }}</h2>
+                        </div>
+                        <div class="panel-body">
+                            {% if status_message %}
+                                <div class="alert alert-success message">{{ status_message }}</div>
+                            {% endif %}
+                            {% if error_message %}
+                                <div class="alert alert-danger message">{{ error_message }}</div>
+                            {% endif %}
+
+                            {% get_current_timezone as TIME_ZONE %}
+                            <form action="{% url 'set_timezone' %}" method="POST">
+                                {% csrf_token %}
+                                <label for="timezone">Time zone:</label>
+                                <select name="timezone" title="Timezone selection form">
+                                    {% for tz in timezones %}
+                                        <option value="{{ tz }}"{% if tz == TIME_ZONE %}
+                                                selected{% endif %}>{{ tz }}</option>
+                                    {% endfor %}
+                                </select>
+                                <input type="submit" value="Set"/>
+                            </form>
+
+                        </div>
+                        <div class="panel-footer">
+                            {% if pagination %}
+                                {% include 'snippets/pagination.html' %}
+                            {% endif %}
+                            <!-- <hr id="panel_footer_bar"> -->
+                            {% if panel_footer %}
+                                <div class="alert alert-info">{{ panel_footer }}</div>
+                            {% else %}
+                                <div>{{ default_panel_footer }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4 right-sidebar">
+                    {% include 'snippets/rightsidebar.html' %}
+                </div>
+            </div>
+        </div>
+    {% endcache %}
+{% endblock %}

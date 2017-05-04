@@ -1,0 +1,17 @@
+{% load bootstrap3 %}
+{% load i18n %}
+{% load l10n %}
+{% load invoicing_extras %}
+{% blocktrans %}
+    <div>
+        <p>Dear {{ client }},</p>
+
+        <p>Please find a receipt for invoice number {{ invoice_number }}, attached (PDF).</p>
+
+        <p>Thank you for your business!</p>
+
+        <p>Kind regards,</p>
+
+        <p>{{ business }}</p>
+    </div>
+{% endblocktrans %}

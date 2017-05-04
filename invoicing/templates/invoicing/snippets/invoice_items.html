@@ -1,0 +1,55 @@
+{% load bootstrap3 %}
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% load invoicing_extras %}
+{% localtime on %}
+    <div class="accounts_display">
+        <div class="view_clients_blurb">
+            <p>{{ blurb }}</p>
+            <hr>
+        </div>
+        {% if invoice_items %}
+            {% for item in invoice_items %}
+                <div class="client_index" id="_{{ forloop.counter }}">
+                    <ul>
+                        {% for field, value in item.items %}
+                            {% if field == 'Item' %}
+                                <li id="_{{ forloop.parentloop.counter }}">{{ field }}: {{ value }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="client_data" id="_{{ forloop.counter }}">
+                    <ul>
+                        {% for field, value in item.items %}
+                            {% if field == 'Created' %}
+                                <li id="_{{ forloop.parentloop.counter }}">{{ field }}: {{ value }}</li>
+                            {% endif %}
+                            {% if field != 'Item' and field != 'retired' and field != 'id' and field != 'Created' %}
+                                {% if field == 'Price' %}
+                                    <li id="_{{ forloop.parentloop.counter }}">{{ field }} ({{ currency_symbol }}):
+                                        {{ value }}{% else %}
+                                    <li id="_{{ forloop.parentloop.counter }}">{{ field }}: {{ value|linebreaksbr }}</li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    <ul id="link_buttons">
+                        <!-- edit item link -->
+                        <li class="account_record_link">
+                            <a class="btn btn btn-primary" href="
+
+
+
+                                    {{ param_str }}{{ edit_invoice_item_param_str }}&{{ edit_invoice_item_id_param_str }}={{ item.id }}">{{ edit_invoice_item_blurb }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+            {% endfor %} <!-- end item loop -->
+        {% else %}
+            {{ no_results }}
+        {% endif %}  <!-- end item if -->
+    </div> <!-- end accounts_display div -->
+{% endlocaltime %}

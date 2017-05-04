@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_messages %}
+{% bootstrap_javascript %}
+
+{% block the_body %}
+    <div class="container-fluid inner_body_container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-lg-6 registration_body">
+                {% if form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        Your username and password didn't match. Please try again.
+                    </div>
+                {% endif %}
+
+                {% if next %}
+                    {% if user.is_authenticated %}
+                        <div class="alert alert-warning" role="alert">
+                            Your account doesn't have access to this page. To proceed,
+                            please login with an account that has access.
+                        </div>
+                    {% else %}
+                        <div class="alert alert-warning" role="alert">
+                            Please login to continue ...
+                        </div>
+                    {% endif %}
+                {% endif %}
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                {{ form.username.label_tag }}
+                            </div>
+                            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 pull-right">
+                                {{ form.username }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                {{ form.password.label_tag }}
+                            </div>
+                            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 pull-right">
+                                {{ form.password }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                {% bootstrap_button "Login" button_type="submit" value="login" button_class="btn-success" %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                <input type="hidden" name="next" value="{{ next }}"/>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:1em;">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-md-lg-12">
+                                <span><a href="{% url 'password_reset' %}">Lost password?</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,632 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-14 19:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: aninstance/forms.py:15
+msgid "Search in"
+msgstr ""
+
+#: aninstance/forms.py:22 aninstance/forms.py:46
+msgid "Search for"
+msgstr ""
+
+#: aninstance/forms.py:44 invoicing/views.py:468
+msgid "Search"
+msgstr ""
+
+#: aninstance/validators.py:15 aninstance/validators.py:22
+#: aninstance/validators.py:29
+msgid "{} contained invalid characters"
+msgstr ""
+
+#: aninstance/validators.py:39
+msgid "{}?! If you really want to give us that much, please call!"
+msgstr ""
+
+#: aninstance/validators.py:42
+msgid "{} contained invalid characters!"
+msgstr ""
+
+#: aninstance/validators.py:48
+msgid "{} contained something bad!"
+msgstr ""
+
+#: aninstance/validators.py:58
+msgid "The Stripe token is way too long!"
+msgstr ""
+
+#: aninstance/validators.py:65
+msgid "You cannot assign the same name to two active items!"
+msgstr ""
+
+#: invoicing/forms.py:57
+msgid "Uploading a new image will overwrite existing"
+msgstr ""
+
+#: invoicing/forms.py:75
+msgid "Image too large - it is over 1MB!"
+msgstr ""
+
+#: invoicing/forms.py:89
+msgid "The image does not exist"
+msgstr ""
+
+#: invoicing/forms.py:118
+msgid "Select items, then quantities below"
+msgstr ""
+
+#: invoicing/forms.py:121
+msgid "Select a business to issue from"
+msgstr ""
+
+#: invoicing/models.py:42
+msgid "Account name"
+msgstr ""
+
+#: invoicing/models.py:44
+msgid "Contact title"
+msgstr ""
+
+#: invoicing/models.py:45
+msgid "Contact surname"
+msgstr ""
+
+#: invoicing/models.py:46
+msgid "Contact first name"
+msgstr ""
+
+#: invoicing/models.py:47
+msgid "Contact email"
+msgstr ""
+
+#: invoicing/models.py:48
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:64
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:98
+msgid "Phone"
+msgstr ""
+
+#: invoicing/models.py:49
+msgid "Company name"
+msgstr ""
+
+#: invoicing/models.py:50
+msgid "Building #"
+msgstr ""
+
+#: invoicing/models.py:51
+msgid "Building name"
+msgstr ""
+
+#: invoicing/models.py:52
+msgid "Street"
+msgstr ""
+
+#: invoicing/models.py:53
+msgid "Locality"
+msgstr ""
+
+#: invoicing/models.py:54
+msgid "Town"
+msgstr ""
+
+#: invoicing/models.py:55
+msgid "County/State"
+msgstr ""
+
+#: invoicing/models.py:56
+msgid "Postcode/zip"
+msgstr ""
+
+#: invoicing/models.py:58
+msgid "Account status"
+msgstr ""
+
+#: invoicing/models.py:60
+msgid "Account type"
+msgstr ""
+
+#: invoicing/models.py:62
+msgid "Business Logo"
+msgstr ""
+
+#: invoicing/models.py:172
+msgid "Jan"
+msgstr ""
+
+#: invoicing/models.py:172
+msgid "Feb"
+msgstr ""
+
+#: invoicing/models.py:172
+msgid "Mar"
+msgstr ""
+
+#: invoicing/models.py:172
+msgid "Apr"
+msgstr ""
+
+#: invoicing/models.py:173
+msgid "May"
+msgstr ""
+
+#: invoicing/models.py:173
+msgid "Jun"
+msgstr ""
+
+#: invoicing/models.py:173
+msgid "Jul"
+msgstr ""
+
+#: invoicing/models.py:173
+msgid "Aug"
+msgstr ""
+
+#: invoicing/models.py:174
+msgid "Sep"
+msgstr ""
+
+#: invoicing/models.py:174
+msgid "Oct"
+msgstr ""
+
+#: invoicing/models.py:174
+msgid "Nov"
+msgstr ""
+
+#: invoicing/models.py:174
+msgid "Dec"
+msgstr ""
+
+#: invoicing/models.py:190
+msgid "Invoice status"
+msgstr ""
+
+#: invoicing/models.py:199
+msgid "In this reality, you cannot issue a new invoice to be due in the past."
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/account_form.html:29
+msgid "Existing logo"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:11
+msgid "Invoice #"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:26
+msgid "Invoice number: "
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:29
+msgid "Issued by"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:38
+msgid "Business Address"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:60
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:94
+msgid "Email"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:74
+msgid "Client Address"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:113
+msgid "Invoice items"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:122
+msgid "Description"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:126
+msgid "Price ("
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:127
+msgid "exc. tax)"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:131
+msgid "Quantity"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:140
+msgid "Invoice breakdown"
+msgstr ""
+
+#: invoicing/views.py:78
+msgid "Dashboard"
+msgstr ""
+
+#: invoicing/views.py:79
+msgid "View client accounts"
+msgstr ""
+
+#: invoicing/views.py:80
+msgid "Create new account"
+msgstr ""
+
+#: invoicing/views.py:81 invoicing/views.py:535 invoicing/views.py:554
+msgid "View invoice items"
+msgstr ""
+
+#: invoicing/views.py:82
+msgid "View business profiles"
+msgstr ""
+
+#: invoicing/views.py:252 invoicing/views.py:259 invoicing/views.py:697
+msgid "Edit account"
+msgstr ""
+
+#: invoicing/views.py:258
+msgid "Account does not exist!"
+msgstr ""
+
+#: invoicing/views.py:276
+msgid "Create account"
+msgstr ""
+
+#: invoicing/views.py:281 invoicing/views.py:320
+msgid "Tap on an account name to view more data"
+msgstr ""
+
+#: invoicing/views.py:316 invoicing/views.py:333 invoicing/views.py:336
+msgid "View accounts"
+msgstr ""
+
+#: invoicing/views.py:316
+msgid "View account"
+msgstr ""
+
+#: invoicing/views.py:321
+msgid "Here is the requested record for "
+msgstr ""
+
+#: invoicing/views.py:323
+msgid "Edit this account record"
+msgstr ""
+
+#: invoicing/views.py:327
+msgid "View invoices for this account"
+msgstr ""
+
+#: invoicing/views.py:328
+msgid "New invoice for {}"
+msgstr ""
+
+#: invoicing/views.py:332
+msgid "There are no accounts to display!"
+msgstr ""
+
+#: invoicing/views.py:335
+msgid "Stop messing about!"
+msgstr ""
+
+#: invoicing/views.py:343
+msgid "The invoice you are looking for does not appear to exist!"
+msgstr ""
+
+#: invoicing/views.py:362
+msgid "Add an invoice for {}"
+msgstr ""
+
+#: invoicing/views.py:363
+msgid "Create invoice"
+msgstr ""
+
+#: invoicing/views.py:367 invoicing/views.py:415
+msgid "Edit invoice"
+msgstr ""
+
+#: invoicing/views.py:381
+msgid "Available options dependent on current status"
+msgstr ""
+
+#: invoicing/views.py:387
+msgid "Due date cannot be changed once invoice is issued"
+msgstr ""
+
+#: invoicing/views.py:389
+msgid "Discount cannot be changed once invoice is issued"
+msgstr ""
+
+#: invoicing/views.py:391
+msgid "Items cannot be change once invoice is issued"
+msgstr ""
+
+#: invoicing/views.py:396
+msgid "Tax status cannot be changed once invoice is issued"
+msgstr ""
+
+#: invoicing/views.py:407
+msgid "Edit invoice record"
+msgstr ""
+
+#: invoicing/views.py:414
+msgid "The invoice you were looking for does not appear to exist!"
+msgstr ""
+
+#: invoicing/views.py:420
+msgid "No invoice available"
+msgstr ""
+
+#: invoicing/views.py:458
+msgid "View invoices"
+msgstr ""
+
+#: invoicing/views.py:458
+msgid "View invoice"
+msgstr ""
+
+#: invoicing/views.py:464
+msgid "Below are listed all invoices for {}. Tap an invoice to view in full."
+msgstr ""
+
+#: invoicing/views.py:469
+msgid "Find an invoice"
+msgstr ""
+
+#: invoicing/views.py:470
+msgid "Edit this invoice"
+msgstr ""
+
+#: invoicing/views.py:472
+msgid "Generate PDF"
+msgstr ""
+
+#: invoicing/views.py:475
+msgid "Create invoice for {}"
+msgstr ""
+
+#: invoicing/views.py:478
+msgid "There are no matching invoices available!"
+msgstr ""
+
+#: invoicing/views.py:479
+msgid "View client invoices"
+msgstr ""
+
+#: invoicing/views.py:480
+msgid "Create invoice for this client"
+msgstr ""
+
+#: invoicing/views.py:488
+msgid "Create new item"
+msgstr ""
+
+#: invoicing/views.py:540
+msgid ""
+"Below are listed all active invoice items (tap on item title to view more)"
+msgstr ""
+
+#: invoicing/views.py:541
+msgid "Below are selected invoice item(s)"
+msgstr ""
+
+#: invoicing/views.py:544
+msgid "Find item"
+msgstr ""
+
+#: invoicing/views.py:545
+msgid "Find an invoice item"
+msgstr ""
+
+#: invoicing/views.py:546
+msgid "Edit item"
+msgstr ""
+
+#: invoicing/views.py:553
+msgid "There are no matching items available!"
+msgstr ""
+
+#: invoicing/views.py:561 invoicing/views.py:837 invoicing/views.py:860
+msgid "Submit item"
+msgstr ""
+
+#: invoicing/views.py:562
+msgid "The invoice item you are looking for does not appear to exist!"
+msgstr ""
+
+#: invoicing/views.py:578
+msgid "Add an invoice item"
+msgstr ""
+
+#: invoicing/views.py:597
+msgid "{} cannot be changed once item has been billed"
+msgstr ""
+
+#: invoicing/views.py:602
+msgid "Edit invoice item record"
+msgstr ""
+
+#: invoicing/views.py:603
+msgid "Note: This item has been billed in {} invoices"
+msgstr ""
+
+#: invoicing/views.py:609
+msgid "The invoice item you were looking for does not appear to exist!"
+msgstr ""
+
+#: invoicing/views.py:610
+msgid "Edit invoice item"
+msgstr ""
+
+#: invoicing/views.py:615
+msgid "No invoice item available"
+msgstr ""
+
+#: invoicing/views.py:661
+msgid "The requested invoice was not available!"
+msgstr ""
+
+#: invoicing/views.py:695
+msgid "Account updated!"
+msgstr ""
+
+#: invoicing/views.py:709
+msgid "An error occurred so the account was not updated!"
+msgstr ""
+
+#: invoicing/views.py:732 invoicing/views.py:786
+msgid "The assigned client does not appear to exist!"
+msgstr ""
+
+#: invoicing/views.py:824
+msgid "There was a problem updating the invoice!"
+msgstr ""
+
+#: invoicing/views.py:832
+msgid "The invoice could not be updated!"
+msgstr ""
+
+#: invoicing/views.py:853
+msgid "There was a problem with submitting the form!"
+msgstr ""
+
+#: invoicing/views.py:894
+msgid "There was a problem updating the invoice item!"
+msgstr ""
+
+#: invoicing/views.py:900
+msgid "The invoice item could not be updated!"
+msgstr ""
+
+#: invoicing/views.py:999
+msgid "Items total ({})"
+msgstr ""
+
+#: invoicing/views.py:1003
+msgid "Total after discount ({})"
+msgstr ""
+
+#: invoicing/views.py:1007
+msgid "Total after tax ({})"
+msgstr ""
+
+#: templates/registration/logged_out.html:9
+msgid "You have been logged out."
+msgstr ""
+
+#: templates/registration/logged_out.html:10
+msgid "Log in again"
+msgstr ""
+
+#: templates/registration/password_change_done.html:9
+msgid "Your password was changed."
+msgstr ""
+
+#: templates/registration/password_change_form.html:14
+msgid "Please correct the error below."
+msgstr ""
+
+#: templates/registration/password_change_form.html:15
+msgid "Please correct the errors below."
+msgstr ""
+
+#: templates/registration/password_change_form.html:19
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+
+#: templates/registration/password_change_form.html:47
+#: templates/registration/password_reset_confirm.html:21
+msgid "Change my password"
+msgstr ""
+
+#: templates/registration/password_reset_complete.html:9
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr ""
+
+#: templates/registration/password_reset_complete.html:10
+msgid "Log in"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:11
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:16
+msgid "New password:"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:19
+msgid "Confirm password:"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:26
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+
+#: templates/registration/password_reset_done.html:9
+msgid ""
+"We've emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+
+#: templates/registration/password_reset_done.html:10
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:4
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:6
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:10
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:12
+msgid "Carry on ..."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:14
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: templates/registration/password_reset_form.html:9
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
+msgstr ""
+
+#: templates/registration/password_reset_form.html:12
+msgid "Email address:"
+msgstr ""
+
+#: templates/registration/password_reset_form.html:13
+msgid "Reset my password"
+msgstr ""

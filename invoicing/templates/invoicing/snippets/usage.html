@@ -1,0 +1,57 @@
+{% load bootstrap3 %}
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% load invoicing_extras %}
+<div class="invoicing_usage">
+    {% blocktrans %}
+        <h2>Features</h2>
+        <p>Features include:</p>
+        <ul>
+            <li>Define a primary and secondary business accounts</li>
+            <li>Define client accounts</li>
+            <li>Define invoice items</li>
+            <li>Define tax rates for individual invoice items</li>
+            <li>Define tax status for individual invoices</li>
+            <li>Define discounts for individual invoices</li>
+            <li>Create recurring invoices</li>
+            <li>Auto-updating invoice statues: Draft, Issued, Sent, Overdue, Paid partially, Paid in full, Cancelled</li>
+            <li>Automatic generation of itemised bill totals (inc. tax & discounts)</li>
+            <li>Automatic generation of PDF of invoice and reciepts</li>
+            <li>Optional automatic emailing of PDF invoice/receipts to clients</li>
+            <li>Fully customisable email templates</li>
+            <li>Fully customisable PDF templates</li>
+            <li>Fully customisable interface design (template & CSS)</li>
+        </ul>
+        <h2>Quickstart</h2>
+        <p>The arrows (>) indicate tapping the button with the following title (that should appear prominently on the
+            page).</p>
+        <ul>
+            <li>Create business profile
+                <ul>
+                    <li>"Menu" > "Create new account"</li>
+                </ul>
+            </li>
+            <li>Create client account
+                <ul>
+                    <li>"Menu" > "Create new account"</li>
+                </ul>
+            </li>
+            <li>Create invoice items
+                <ul>
+                    <li>"Menu" > "View invoice items" > "Create new item"</li>
+                </ul>
+            </li>
+            <li>Create new invoice
+                <ul>
+                    <li>"Menu" > "View client accounts" > "Create invoice for [COMPANY NAME]"</li>
+                </ul>
+            </li>
+            <li>Edit invoice
+                <ul>
+                    <li>"Menu" > "View client accounts" > "View invoices for this account" > "Edit this invoice"</li>
+                </ul>
+            </li>
+        </ul>
+    {% endblocktrans %}
+</div>

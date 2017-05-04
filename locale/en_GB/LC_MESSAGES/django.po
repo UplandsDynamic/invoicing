@@ -1,0 +1,1226 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-01 22:41+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: aninstance_framework/base.py:94 aninstance_framework/search_forms.py:22
+#: aninstance_framework/search_forms.py:46
+msgid "Search for"
+msgstr ""
+
+#: aninstance_framework/base.py:95 aninstance_framework/search.py:58
+#: aninstance_framework/search_forms.py:44 invoicing/views.py:539
+msgid "Search"
+msgstr ""
+
+#: aninstance_framework/custom_context_processors.py:12
+msgid "Aninstance Web Development & Software Engineering"
+msgstr ""
+
+#: aninstance_framework/custom_context_processors.py:14
+msgid ""
+"~ Based in Scotland, Aninstance serves local & international clientele ~"
+msgstr ""
+
+#: aninstance_framework/custom_context_processors.py:16
+msgid ""
+"~ Aninstance - Specialising in providing powerful, robust, reliable & secure "
+"Open Source web & IT solutions ~"
+msgstr ""
+
+#: aninstance_framework/custom_context_processors.py:18
+msgid "&copy;{} {}. All Rights Reserved."
+msgstr ""
+
+#: aninstance_framework/custom_context_processors.py:27
+msgid "Aninstance.com"
+msgstr ""
+
+#: aninstance_framework/custom_context_processors.py:30
+msgid ""
+"Aninstance: Web development, programming, software engineering. Global "
+"service, Moray based."
+msgstr ""
+
+#: aninstance_framework/custom_context_processors.py:31
+msgid "Your origin IP address appears to be"
+msgstr ""
+
+#: aninstance_framework/custom_context_processors.py:32
+msgid "No client IP recorded ..."
+msgstr ""
+
+#: aninstance_framework/custom_context_processors.py:34
+msgid "Your timezone is set as"
+msgstr ""
+
+#: aninstance_framework/custom_context_processors.py:42
+msgid "Back to previous"
+msgstr ""
+
+#: aninstance_framework/search_forms.py:15
+msgid "Search in"
+msgstr ""
+
+#: invoicing/forms.py:57
+msgid "Uploading a new image will overwrite existing"
+msgstr ""
+
+#: invoicing/forms.py:60
+msgid "Send invoice/receipt email (with PDFs) when invoice status changed?"
+msgstr ""
+
+#: invoicing/forms.py:79
+msgid "Image too large - it is over 1MB!"
+msgstr ""
+
+#: invoicing/forms.py:93
+msgid "The image does not exist"
+msgstr ""
+
+#: invoicing/forms.py:129
+msgid "Select items, then quantities below"
+msgstr ""
+
+#: invoicing/forms.py:132
+msgid "Enter partial payment amount"
+msgstr ""
+
+#: invoicing/forms.py:134
+msgid "Select a business to issue from"
+msgstr ""
+
+#: invoicing/forms.py:148
+msgid "Is this to be a recurring invoice?"
+msgstr ""
+
+#: invoicing/models.py:52
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:60
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:102
+msgid "Account name"
+msgstr ""
+
+#: invoicing/models.py:54
+msgid "Contact title"
+msgstr ""
+
+#: invoicing/models.py:55
+msgid "Contact surname"
+msgstr ""
+
+#: invoicing/models.py:56
+msgid "Contact first name"
+msgstr ""
+
+#: invoicing/models.py:57
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:87
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:131
+msgid "Contact email"
+msgstr ""
+
+#: invoicing/models.py:58
+msgid "Phone"
+msgstr ""
+
+#: invoicing/models.py:59
+msgid "Company name"
+msgstr ""
+
+#: invoicing/models.py:60
+msgid "Company website"
+msgstr ""
+
+#: invoicing/models.py:61
+msgid "Building #"
+msgstr ""
+
+#: invoicing/models.py:62
+msgid "Building name"
+msgstr ""
+
+#: invoicing/models.py:63
+msgid "Street"
+msgstr ""
+
+#: invoicing/models.py:64
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:75
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:119
+msgid "Locality"
+msgstr ""
+
+#: invoicing/models.py:65
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:78
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:122
+msgid "Town"
+msgstr ""
+
+#: invoicing/models.py:66
+msgid "County/State"
+msgstr ""
+
+#: invoicing/models.py:67
+msgid "Postcode/zip"
+msgstr ""
+
+#: invoicing/models.py:69
+msgid "Account status"
+msgstr ""
+
+#: invoicing/models.py:71
+msgid "Account type"
+msgstr ""
+
+#: invoicing/models.py:74
+msgid "Business Logo"
+msgstr ""
+
+#: invoicing/models.py:191
+msgid "Jan"
+msgstr ""
+
+#: invoicing/models.py:191
+msgid "Feb"
+msgstr ""
+
+#: invoicing/models.py:191
+msgid "Mar"
+msgstr ""
+
+#: invoicing/models.py:191
+msgid "Apr"
+msgstr ""
+
+#: invoicing/models.py:192
+msgid "May"
+msgstr ""
+
+#: invoicing/models.py:192
+msgid "Jun"
+msgstr ""
+
+#: invoicing/models.py:192
+msgid "Jul"
+msgstr ""
+
+#: invoicing/models.py:192
+msgid "Aug"
+msgstr ""
+
+#: invoicing/models.py:193
+msgid "Sep"
+msgstr ""
+
+#: invoicing/models.py:193
+msgid "Oct"
+msgstr ""
+
+#: invoicing/models.py:193
+msgid "Nov"
+msgstr ""
+
+#: invoicing/models.py:193
+msgid "Dec"
+msgstr ""
+
+#: invoicing/models.py:197
+#: invoicing/templates/invoicing/snippets/accounts.html:36
+#: invoicing/templates/invoicing/snippets/invoices.html:52
+#: invoicing/templates/invoicing/snippets/invoices.html:55
+msgid "No"
+msgstr ""
+
+#: invoicing/models.py:198
+msgid "Daily"
+msgstr ""
+
+#: invoicing/models.py:199
+msgid "Monthly"
+msgstr ""
+
+#: invoicing/models.py:200
+msgid "Annual"
+msgstr ""
+
+#: invoicing/models.py:204
+msgid "Client"
+msgstr ""
+
+#: invoicing/models.py:207
+#: invoicing/templates/invoicing/snippets/invoices.html:16
+msgid "Invoice number"
+msgstr ""
+
+#: invoicing/models.py:209
+#: invoicing/templates/invoicing/snippets/invoices.html:32
+msgid "Created"
+msgstr ""
+
+#: invoicing/models.py:210
+#: invoicing/templates/invoicing/snippets/invoices.html:35
+msgid "Issued"
+msgstr ""
+
+#: invoicing/models.py:211
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:157
+#: invoicing/templates/invoicing/snippets/invoices.html:19
+msgid "Invoice due"
+msgstr ""
+
+#: invoicing/models.py:214
+#: invoicing/templates/invoicing/snippets/invoices.html:56
+msgid "Items"
+msgstr ""
+
+#: invoicing/models.py:216
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:167
+#: invoicing/templates/invoicing/snippets/invoices.html:37
+msgid "Discount"
+msgstr ""
+
+#: invoicing/models.py:218
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:172
+#: invoicing/templates/invoicing/snippets/invoices.html:42
+msgid "Tax status"
+msgstr ""
+
+#: invoicing/models.py:220
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:149
+#: invoicing/templates/invoicing/snippets/invoices.html:45
+msgid "Invoice status"
+msgstr ""
+
+#: invoicing/models.py:221
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:162
+#: invoicing/templates/invoicing/snippets/invoices.html:48
+msgid "Date marked as paid"
+msgstr ""
+
+#: invoicing/models.py:223
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:244
+msgid "Amount paid"
+msgstr ""
+
+#: invoicing/models.py:225
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:35
+#: invoicing/templates/invoicing/snippets/invoices.html:22
+msgid "Issued by"
+msgstr ""
+
+#: invoicing/models.py:227
+msgid "Issued invoice PDF"
+msgstr ""
+
+#: invoicing/models.py:229
+msgid "Issued receipt PDF"
+msgstr ""
+
+#: invoicing/models.py:230
+#: invoicing/templates/invoicing/snippets/invoices.html:50
+msgid "Invoice email sent"
+msgstr ""
+
+#: invoicing/models.py:231
+#: invoicing/templates/invoicing/snippets/invoices.html:53
+msgid "Receipt email sent"
+msgstr ""
+
+#: invoicing/models.py:233
+msgid "Recurring period"
+msgstr ""
+
+#: invoicing/models.py:235
+msgid "Parent invoice"
+msgstr ""
+
+#: invoicing/models.py:245
+msgid "You cannot assign the same name to two active items!"
+msgstr ""
+
+#: invoicing/signals.py:152
+msgid "A child invoice cannot itself be recurring"
+msgstr ""
+
+#: invoicing/signals.py:156
+msgid "An invoice cannot be it's own parent ... stop messing around!"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/account_form.html:29
+msgid "Existing logo"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/account_form.html:37
+msgid "Email (+ PDFs)"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/accounts.html:35
+msgid "Auto email notifications (+ PDFs)"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/accounts.html:36
+#: invoicing/templates/invoicing/snippets/invoices.html:51
+#: invoicing/templates/invoicing/snippets/invoices.html:54
+msgid "Yes"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_email.html:5
+#, python-format
+msgid ""
+"\n"
+"    <div>\n"
+"        <p>Dear %(client)s,</p>\n"
+"\n"
+"        <p>Please find invoice number %(invoice_number)s, attached (PDF).</"
+"p>\n"
+"\n"
+"        <p>Thank you for your business!</p>\n"
+"\n"
+"        <p>Kind regards,</p>\n"
+"\n"
+"        <p>%(business)s</p>\n"
+"    </div>\n"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:11
+msgid "Invoice#"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:24
+msgid "Receipt"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:26
+msgid "Invoice"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:31
+msgid "Invoice number: "
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:47
+msgid "Invoice from"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:48
+#: invoicing/templates/invoicing/snippets/invoices.html:25
+msgid "Issued to"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:57
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:99
+msgid "Business name"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:64
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:106
+msgid "Business website"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:69
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:111
+msgid "Building"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:72
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:114
+msgid "Street address"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:81
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:125
+msgid "County"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:84
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:128
+msgid "Postcode"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:92
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:136
+msgid "Contact phone"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:145
+msgid "Invoice details"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:153
+msgid "Invoice issued"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:178
+msgid "Invoice items"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:186
+msgid "Description"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:191
+msgid "Price "
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:192
+msgid "exc. tax"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:197
+msgid "Tax rated"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:201
+msgid "Quantity"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:217
+msgid "Charge totals"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:218
+msgid "Amount"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:223
+msgid "Total for all items"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:227
+msgid "Total after any discount applied"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:232
+msgid "Grand total"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoice_pdf.html:250
+#: invoicing/templates/invoicing/snippets/invoices.html:87
+#: invoicing/views.py:1241
+msgid "Amount outstanding"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoices.html:62
+msgid "Item description"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoices.html:65
+msgid "Cost per unit"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoices.html:73
+#: invoicing/views.py:1231
+msgid "Items total"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoices.html:76
+#: invoicing/views.py:1234
+msgid "Total after discount"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoices.html:79
+#: invoicing/views.py:1237
+msgid "Total after tax"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoices.html:82
+msgid "Total paid"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoices.html:92
+msgid "Recurring invoice"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoices.html:103
+msgid "View receipt PDF"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoices.html:109
+msgid "View Invoice PDF"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoices.html:127
+msgid "Email receipt PDF"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/invoices.html:138
+msgid "Email invoice PDF"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_footer.html:3
+msgid "Thank You!"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_footer.html:5
+msgid "Thank you for your business, it is much appreciated!"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_footer_services.html:3
+msgid "Aninstance: Powered by Open Source Software"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_footer_services.html:4
+msgid ""
+"\n"
+"    <ul id=\"pdf_footer_services\">\n"
+"        <li>Software engineering & development services\n"
+"            (including Python programming; GTK GUI development;\n"
+"            Django development; PHP coding; Javascript scripting)\n"
+"        </li>\n"
+"        <li>\n"
+"            Professional, custom website design, development\n"
+"            & support\n"
+"        </li>\n"
+"        <li>\n"
+"            CMS provision, customisation & support (WordPress,\n"
+"            WooCommerce, OpenCart, Discourse forums, Drupal)\n"
+"        </li>\n"
+"        <li>\n"
+"            Hosted cloud services provision & support (including\n"
+"            NextCloud, MatterMost, RocketChat, Mumble)\n"
+"        </li>\n"
+"        <li>\n"
+"            Professional graphic design\n"
+"        </li>\n"
+"        <li>\n"
+"            Linux & BSD administration & consultancy\n"
+"        </li>\n"
+"        <li>\n"
+"            Technical support & consultancy services\n"
+"        </li>\n"
+"    </ul>\n"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_legal.html:3
+msgid "Legal"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_legal.html:5
+msgid ""
+"Payment of this invoice indicates that you (the client and/or customer) "
+"accept and agree, in full,\n"
+"    to the terms and conditions of the \"Aninstance - Web & Cloud Hosting "
+"Contract\" (for hosting services), or\n"
+"    the \"Aninstance - Web & Software Development / Technical Support "
+"Contract\" (for development or technical support\n"
+"    services), as provided online here: "
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:3
+msgid "Payment options"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:5
+msgid "Bank Transfer is strongly encouraged."
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:6
+msgid ""
+"Please note that if payment is made in a denomination other than Pound "
+"Sterling (GBP £), you will be liable for any associated foreign currency "
+"conversion and/or international transfer fees."
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:7
+msgid "The banking details as as follows:"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:9
+msgid "Payee"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:11
+msgid "IBAN (for international transfers)"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:12
+msgid "BIC/SWIFT"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:13
+msgid "Account number"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:14
+msgid "Reference"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:14
+msgid "The invoice number"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:16
+#, python-format
+msgid ""
+"Online payment is available, although that would incur a 3%% surcharge. If "
+"you would like to pay online, please visit"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:18
+#, python-format
+msgid ""
+"to pay with a debit or credit card, via our secure payment card processor "
+"(Stripe).\n"
+"    Please remember to add the 3%% surcharge to your total."
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:21
+msgid "Cheques are no longer accepted as means of payment."
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/pdf_payment_details.html:22
+msgid ""
+"Cash may be sent to the business address (above), entirely at your own risk."
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/receipt_email.html:5
+#, python-format
+msgid ""
+"\n"
+"    <div>\n"
+"        <p>Dear %(client)s,</p>\n"
+"\n"
+"        <p>Please find a receipt for invoice number %(invoice_number)s, "
+"attached (PDF).</p>\n"
+"\n"
+"        <p>Thank you for your business!</p>\n"
+"\n"
+"        <p>Kind regards,</p>\n"
+"\n"
+"        <p>%(business)s</p>\n"
+"    </div>\n"
+msgstr ""
+
+#: invoicing/templates/invoicing/snippets/usage.html:7
+msgid ""
+"\n"
+"        <h2>Features</h2>\n"
+"        <p>Features include:</p>\n"
+"        <ul>\n"
+"            <li>Define a primary and secondary business accounts</li>\n"
+"            <li>Define client accounts</li>\n"
+"            <li>Define invoice items</li>\n"
+"            <li>Define tax rates for individual invoice items</li>\n"
+"            <li>Define tax status for individual invoices</li>\n"
+"            <li>Define discounts for individual invoices</li>\n"
+"            <li>Create recurring invoices</li>\n"
+"            <li>Auto-updating invoice statues: Draft, Issued, Sent, Overdue, "
+"Paid partially, Paid in full, Cancelled</li>\n"
+"            <li>Automatic generation of itemised bill totals (inc. tax & "
+"discounts)</li>\n"
+"            <li>Automatic generation of PDF of invoice and reciepts</li>\n"
+"            <li>Optional automatic emailing of PDF invoice/receipts to "
+"clients</li>\n"
+"            <li>Fully customisable email templates</li>\n"
+"            <li>Fully customisable PDF templates</li>\n"
+"            <li>Fully customisable interface design (template & CSS)</li>\n"
+"        </ul>\n"
+"        <h2>Quickstart</h2>\n"
+"        <p>The arrows (>) indicate tapping the button with the following "
+"title (that should appear prominently on the\n"
+"            page).</p>\n"
+"        <ul>\n"
+"            <li>Create business profile\n"
+"                <ul>\n"
+"                    <li>\"Menu\" > \"Create new account\"</li>\n"
+"                </ul>\n"
+"            </li>\n"
+"            <li>Create client account\n"
+"                <ul>\n"
+"                    <li>\"Menu\" > \"Create new account\"</li>\n"
+"                </ul>\n"
+"            </li>\n"
+"            <li>Create invoice items\n"
+"                <ul>\n"
+"                    <li>\"Menu\" > \"View invoice items\" > \"Create new item"
+"\"</li>\n"
+"                </ul>\n"
+"            </li>\n"
+"            <li>Create new invoice\n"
+"                <ul>\n"
+"                    <li>\"Menu\" > \"View client accounts\" > \"Create "
+"invoice for [COMPANY NAME]\"</li>\n"
+"                </ul>\n"
+"            </li>\n"
+"            <li>Edit invoice\n"
+"                <ul>\n"
+"                    <li>\"Menu\" > \"View client accounts\" > \"View "
+"invoices for this account\" > \"Edit this invoice\"</li>\n"
+"                </ul>\n"
+"            </li>\n"
+"        </ul>\n"
+"    "
+msgstr ""
+
+#: invoicing/views.py:76
+msgid "Who?"
+msgstr ""
+
+#: invoicing/views.py:77
+msgid "Find an account"
+msgstr ""
+
+#: invoicing/views.py:89
+msgid "Dashboard"
+msgstr ""
+
+#: invoicing/views.py:90
+msgid "View client accounts"
+msgstr ""
+
+#: invoicing/views.py:91
+msgid "Create new account"
+msgstr ""
+
+#: invoicing/views.py:92 invoicing/views.py:612 invoicing/views.py:631
+msgid "View invoice items"
+msgstr ""
+
+#: invoicing/views.py:93
+msgid "View business profiles"
+msgstr ""
+
+#: invoicing/views.py:94
+msgid "Docs: Usage instructions"
+msgstr ""
+
+#: invoicing/views.py:105
+msgid "Menu"
+msgstr ""
+
+#: invoicing/views.py:255 templates/base.html:111
+msgid "Invoicing"
+msgstr ""
+
+#: invoicing/views.py:256
+msgid "Please select a task from the menu above!"
+msgstr ""
+
+#: invoicing/views.py:264
+msgid "Documents: Usage Instructions"
+msgstr ""
+
+#: invoicing/views.py:265
+msgid "Usage instructions for Aninstance Invoicing"
+msgstr ""
+
+#: invoicing/views.py:296 invoicing/views.py:303 invoicing/views.py:749
+msgid "Edit account"
+msgstr ""
+
+#: invoicing/views.py:302
+msgid "Account does not exist!"
+msgstr ""
+
+#: invoicing/views.py:322
+msgid "Create account"
+msgstr ""
+
+#: invoicing/views.py:327 invoicing/views.py:366
+msgid "Tap on an account name to view more data"
+msgstr ""
+
+#: invoicing/views.py:362 invoicing/views.py:379 invoicing/views.py:382
+msgid "View accounts"
+msgstr ""
+
+#: invoicing/views.py:362
+msgid "View account"
+msgstr ""
+
+#: invoicing/views.py:367
+msgid "Here is the requested record for "
+msgstr ""
+
+#: invoicing/views.py:369
+msgid "Edit this account record"
+msgstr ""
+
+#: invoicing/views.py:373
+msgid "View invoices for this account"
+msgstr ""
+
+#: invoicing/views.py:374
+msgid "New invoice for"
+msgstr ""
+
+#: invoicing/views.py:378
+msgid "There are no accounts to display!"
+msgstr ""
+
+#: invoicing/views.py:381
+msgid "Stop messing about!"
+msgstr ""
+
+#: invoicing/views.py:389
+msgid "The invoice you are looking for does not appear to exist!"
+msgstr ""
+
+#: invoicing/views.py:411
+msgid "Add an invoice for {}"
+msgstr ""
+
+#: invoicing/views.py:412
+msgid "Create invoice"
+msgstr ""
+
+#: invoicing/views.py:417
+msgid "You do not appear to have defined your own business account yet!"
+msgstr ""
+
+#: invoicing/views.py:418
+msgid "No business defined!"
+msgstr ""
+
+#: invoicing/views.py:422 invoicing/views.py:478 invoicing/views.py:824
+msgid "Edit invoice"
+msgstr ""
+
+#: invoicing/views.py:437
+msgid "Available options dependent on current status"
+msgstr ""
+
+#: invoicing/views.py:444
+msgid "Due date cannot be changed once invoice is issued"
+msgstr ""
+
+#: invoicing/views.py:446
+msgid "Discount cannot be changed once invoice is issued"
+msgstr ""
+
+#: invoicing/views.py:448
+msgid "Items cannot be changed once invoice is issued"
+msgstr ""
+
+#: invoicing/views.py:450
+msgid "Business cannot be selected once invoice is issued"
+msgstr ""
+
+#: invoicing/views.py:455
+msgid "Tax status cannot be changed once invoice is issued"
+msgstr ""
+
+#: invoicing/views.py:470
+msgid "Edit invoice record"
+msgstr ""
+
+#: invoicing/views.py:477
+msgid "The invoice you were looking for does not appear to exist!"
+msgstr ""
+
+#: invoicing/views.py:483
+msgid "No invoice available"
+msgstr ""
+
+#: invoicing/views.py:495
+msgid "Email successfully transmitted"
+msgstr ""
+
+#: invoicing/views.py:497
+msgid "Email transmission failed!"
+msgstr ""
+
+#: invoicing/views.py:499
+msgid "Email has already been sent!"
+msgstr ""
+
+#: invoicing/views.py:529
+msgid "View invoices"
+msgstr ""
+
+#: invoicing/views.py:529
+msgid "View invoice"
+msgstr ""
+
+#: invoicing/views.py:535
+msgid "Below are listed all invoices for {}. Tap an invoice to view in full."
+msgstr ""
+
+#: invoicing/views.py:540
+msgid "Find an invoice"
+msgstr ""
+
+#: invoicing/views.py:541
+msgid "Edit this invoice"
+msgstr ""
+
+#: invoicing/views.py:545
+msgid "Create invoice for client"
+msgstr ""
+
+#: invoicing/views.py:552
+msgid "There are no matching invoices available!"
+msgstr ""
+
+#: invoicing/views.py:553
+msgid "View client invoices"
+msgstr ""
+
+#: invoicing/views.py:554
+msgid "Create invoice for this client"
+msgstr ""
+
+#: invoicing/views.py:556
+msgid "No invoices to show!"
+msgstr ""
+
+#: invoicing/views.py:565
+msgid "Create new item"
+msgstr ""
+
+#: invoicing/views.py:617
+msgid ""
+"Below are listed all active invoice items (tap on item title to view more)"
+msgstr ""
+
+#: invoicing/views.py:618
+msgid "Below are selected invoice item(s)"
+msgstr ""
+
+#: invoicing/views.py:621
+msgid "Find item"
+msgstr ""
+
+#: invoicing/views.py:622
+msgid "Find an invoice item"
+msgstr ""
+
+#: invoicing/views.py:623
+msgid "Edit item"
+msgstr ""
+
+#: invoicing/views.py:630
+msgid "There are no matching items available!"
+msgstr ""
+
+#: invoicing/views.py:638 invoicing/views.py:923 invoicing/views.py:952
+msgid "Submit item"
+msgstr ""
+
+#: invoicing/views.py:639
+msgid "The invoice item you are looking for does not appear to exist!"
+msgstr ""
+
+#: invoicing/views.py:655
+msgid "Add an invoice item"
+msgstr ""
+
+#: invoicing/views.py:674
+msgid "{} cannot be changed once item has been billed"
+msgstr ""
+
+#: invoicing/views.py:679
+msgid "Edit invoice item record"
+msgstr ""
+
+#: invoicing/views.py:680
+msgid "Note: This item has been billed in {} invoices"
+msgstr ""
+
+#: invoicing/views.py:686
+msgid "The invoice item you were looking for does not appear to exist!"
+msgstr ""
+
+#: invoicing/views.py:687
+msgid "Edit invoice item"
+msgstr ""
+
+#: invoicing/views.py:701
+msgid "The requested invoice was not available!"
+msgstr ""
+
+#: invoicing/views.py:747
+msgid "Account updated!"
+msgstr ""
+
+#: invoicing/views.py:761
+msgid "An error occurred so the account was not updated!"
+msgstr ""
+
+#: invoicing/views.py:766
+msgid "New invoice"
+msgstr ""
+
+#: invoicing/views.py:785 invoicing/views.py:847
+msgid "The assigned client does not appear to exist!"
+msgstr ""
+
+#: invoicing/views.py:884
+msgid ""
+"There was a problem updating the invoice: {}. <a class=\"error_link\" href="
+"\"{}\">Try again!</a>"
+msgstr ""
+
+#: invoicing/views.py:909
+msgid "There was a problem updating the invoice!"
+msgstr ""
+
+#: invoicing/views.py:915
+msgid "The invoice could not be updated: {}"
+msgstr ""
+
+#: invoicing/views.py:945
+msgid "There was a problem with submitting the form!"
+msgstr ""
+
+#: invoicing/views.py:983
+msgid "There was a problem updating the invoice item!"
+msgstr ""
+
+#: invoicing/views.py:989
+msgid "The invoice item could not be updated!"
+msgstr ""
+
+#: payments/validators.py:11
+msgid "{}?! If you really want to give us that much, please call!"
+msgstr ""
+
+#: payments/validators.py:14
+msgid "{} contained invalid characters!"
+msgstr ""
+
+#: payments/validators.py:20
+msgid "{} contained something bad!"
+msgstr ""
+
+#: payments/validators.py:30
+msgid "The Stripe token is way too long!"
+msgstr ""
+
+#: templates/base.html:96
+msgid "Logout"
+msgstr ""
+
+#: templates/base.html:105
+msgid "Admin"
+msgstr ""
+
+#: templates/base.html:120
+msgid "Login"
+msgstr ""
+
+#: templates/base.html:126
+msgid "Set Timezone"
+msgstr ""
+
+#: templates/registration/logged_out.html:9
+msgid "You have been logged out."
+msgstr ""
+
+#: templates/registration/logged_out.html:10
+msgid "Log in again"
+msgstr ""
+
+#: templates/registration/password_change_done.html:9
+msgid "Your password was changed."
+msgstr ""
+
+#: templates/registration/password_change_form.html:14
+msgid "Please correct the error below."
+msgstr ""
+
+#: templates/registration/password_change_form.html:15
+msgid "Please correct the errors below."
+msgstr ""
+
+#: templates/registration/password_change_form.html:19
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+
+#: templates/registration/password_change_form.html:47
+#: templates/registration/password_reset_confirm.html:21
+msgid "Change my password"
+msgstr ""
+
+#: templates/registration/password_reset_complete.html:9
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr ""
+
+#: templates/registration/password_reset_complete.html:10
+msgid "Log in"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:11
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:16
+msgid "New password:"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:19
+msgid "Confirm password:"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:26
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+
+#: templates/registration/password_reset_done.html:9
+msgid ""
+"We've emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+
+#: templates/registration/password_reset_done.html:10
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:4
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:6
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:10
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: templates/registration/password_reset_email.html:12
+msgid "Carry on ..."
+msgstr ""
+
+#: templates/registration/password_reset_email.html:14
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: templates/registration/password_reset_form.html:9
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
+msgstr ""
+
+#: templates/registration/password_reset_form.html:12
+msgid "Email address:"
+msgstr ""
+
+#: templates/registration/password_reset_form.html:13
+msgid "Reset my password"
+msgstr ""

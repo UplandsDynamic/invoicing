@@ -1,0 +1,22 @@
+{% load i18n %}
+{% load l10n %}
+<h3 class="title_text">{% trans 'Payment options' %}</h3>
+<hr>
+<p>{% trans 'Bank Transfer is strongly encouraged.' %}</p>
+<p>{% trans 'Please note that if payment is made in a denomination other than Pound Sterling (GBP £), you will be liable for any associated foreign currency conversion and/or international transfer fees.' %}</p>
+<p>{% trans 'The banking details as as follows:' %}</p>
+<ul id="banking_details">
+    <li><span class="fieldname">{% trans 'Payee' %}</span>MR DANIEL J S BRIGHT</li>
+    <li><span class="fieldname">Sort code</span>08-93-00</li>
+    <li><span class="fieldname">{% trans 'IBAN (for international transfers)' %}</span>GB35CPBK08930089079447</li>
+    <li><span class="fieldname">{% trans 'BIC/SWIFT' %}</span>CPBKGB22</li>
+    <li><span class="fieldname">{% trans 'Account number' %}</span>89079447</li>
+    <li><span class="fieldname">{% trans 'Reference' %}</span>{% trans 'The invoice number' %}</li>
+</ul>
+<p>{% blocktrans %}Online payment is available, although that would incur a 3% surcharge. If you would like to pay online, please visit{% endblocktrans %}
+    <a href="https://www.aninstance.com/payments" target="_blank">https://www.aninstance.com/payments</a>
+    {% blocktrans %}to pay with a debit or credit card, via our secure payment card processor (Stripe).
+    Please remember to add the 3% surcharge to your total.{% endblocktrans %}
+</p>
+<p>{% trans 'Cheques are no longer accepted as means of payment.' %}</p>
+<p>{% trans 'Cash may be sent to the business address (above), entirely at your own risk.' %}</p>

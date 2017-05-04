@@ -1,0 +1,6 @@
+{{ object.account_name }}
+{{ object.account_id }}
+{{ object.contact_first_name }}
+{{ object.contact_surname }}
+{{ object.contact_email }}
+{{ object.company_name }}

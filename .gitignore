@@ -1,0 +1,13 @@
+*.pyc
+*.sqlite3
+*.idea*
+*.log
+*.local_static*
+aninstance_db
+aninstance/whoosh_index/*
+invoicing/migrations/*
+ToDo.txt
+commit_and_push.sh
+__pycache__
+whoosh_index/*
+sync_from_main_repo.sh

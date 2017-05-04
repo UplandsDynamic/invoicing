@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% load cache %}
+{% block the_body %}
+    {% cache cache_ttl invoicing request.get_full_path %}
+        {% load i18n %}
+        {% load l10n %}
+        {% load tz %}
+        {% load bootstrap3 %}
+        {% load invoicing_extras %}
+        <div class="container-fluid inner_body_container">
+            <div class="row">
+                <div class="col-sm-1 col-md-1 col-lg-1 left-sidebar">
+                    {% include 'snippets/leftsidebar.html' %}
+                </div>
+                <div class="col-sm-7 col-md-7 col-lg-7">
+                    <div id="main_body" class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h2>{{ panel_heading|title|safe }}</h2>
+                            <div id="button_container">
+                                <div id="button_div">
+                                    <div class="btn-toolbar" role="toolbar" aria-label="Invoicing Dashboard">
+                                        <div id="invoicing_dashboard_menu_btn_group" class="btn-group" role="group"
+                                             aria-label="Filter dataset">
+                                            <button type="button" class="btn btn-primary dropdown-toggle"
+                                                    data-toggle="dropdown"
+                                                    aria-haspopup="true"
+                                                    aria-expanded="false"
+                                                    id="dataset-filter"><span
+                                                    class="glyphicon glyphicon-menu-hamburger"></span>
+                                                {{ heading_dash_menu }} <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                {% for i in items_dash_menu.dropdown %}
+                                                    <li>
+                                                        <a href="{{ param_str }}{{ i.action }}">{{ i.name }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <!-- These are dumb buttons, hooked up with javascript at foot of page -->
+                                        <button type="button" class="btn btn-primary" id="dash_button"><span
+                                                class="glyphicon glyphicon-info-sign"></span>{{ dash_button }}
+                                        </button>
+                                        <div class="btn-group" id="check_buttons" role="group"
+                                             aria-label="Action on selected">
+                                            <button type="button" class="btn btn-success"
+                                                    id="dash_action_button_1"><span
+                                                    class="glyphicon glyphicon-credit-card"></span>{{ dash_action_button_1 }}
+                                            </button>
+                                            <button type="button" class="btn btn-danger" id="dash_action_button_2"><span
+                                                    class="glyphicon glyphicon-remove"></span>{{ dash_action_button_2 }}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            {% if status_message %}
+                                <div class="alert alert-success message">{{ status_message|safe }}</div>
+                            {% endif %}
+                            {% if error_message %}
+                                <div class="alert alert-danger message">{{ error_message|safe }}</div>
+                            {% endif %}
+                            <!-- main view data -->
+                            {% if request.GET.action == 'new_account' or request.GET.action == 'edit_account' or request.GET.action == 'edit_business_account' %}
+                                {% if account_form %}
+                                    {% include 'invoicing/snippets/account_form.html' %}
+                                {% endif %}
+                            {% elif request.GET.action == 'view_accounts' or request.GET.action == 'view_account' or request.GET.action == 'view_business_accounts' %}
+                                {% include 'invoicing/snippets/accounts.html' %}
+                            {% elif request.GET.action == 'view_invoices' or request.GET.action == 'view_invoice' %}
+                                {% include 'invoicing/snippets/invoices.html' %}
+                            {% elif request.GET.action == 'new_invoice' or request.GET.action == 'edit_invoice' %}
+                                {% if invoice_form %}
+                                    {% include 'invoicing/snippets/invoice_form.html' %}
+                                {% endif %}
+                            {% elif request.GET.action == 'view_invoice_items' or request.GET.action == 'view_invoice_item' %}
+                                {% include 'invoicing/snippets/invoice_items.html' %}
+                            {% elif request.GET.action == 'new_invoice_item' or request.GET.action == 'edit_invoice_item' %}
+                                {% include 'invoicing/snippets/invoice_item_form.html' %}
+                            {% elif request.GET.action == 'email_pdf' %}
+                                {% include 'invoicing/snippets/invoices.html' %}
+                            {% elif request.GET.action == 'usage' %}
+                                {% include 'invoicing/snippets/usage.html' %}
+                            {% else %}
+                                <p>{{ dash_blurb }}</p>
+                                {% if dash_image %}
+                                    <img src="{{ dash_image|safe }}"/>
+                                {% endif %}
+                            {% endif %}
+                            <!-- end main view data -->
+                        </div>
+                        <div class="panel-footer">
+                            {% if pagination %}
+                                {% include 'invoicing/snippets/pagination.html' %}
+                            {% endif %}
+                            <!-- <hr id="panel_footer_bar"> -->
+                            {% if panel_footer %}
+                                <div class="alert alert-warning">{{ panel_footer }}</div>
+                            {% else %}
+                                <div>{{ default_panel_footer }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4 right-sidebar">
+                    {% include 'snippets/rightsidebar.html' %}
+                </div>
+            </div>
+        </div>
+    {% endcache %}
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            /* BUTTON SHOWERS, DEFINERS & LISTENERS */
+            document.getElementById('dash_button').onclick = function () {
+                console.log('Dash button clicked!')
+            };
+            document.getElementById('dash_action_button_1').onclick = function () {
+                console.log('Dash action button 1 clicked!')
+            };
+            document.getElementById('dash_action_button_2').onclick = function () {
+                console.log('Dash action button 2 clicked!')
+            };
+            {% if request.GET.action == 'view_invoices' or request.GET.action == 'view_invoice' %}
+                $('#dash_button').show();
+                $('#dash_button').html('<span class="glyphicon glyphicon-info-sign"></span>{{ dash_button|title }}');
+                document.getElementById('dash_button').onclick = function () {
+                    window.location.href =
+                        '{% url 'invoicing' %}?action=new_invoice&account_id={{ client_id }}'
+                };
+            {% elif request.GET.action == 'view_invoice_items' or request.GET.action == 'view_invoice_item' %}
+                $('#dash_button').show();
+                $('#dash_button').html('<span class="glyphicon glyphicon-info-sign"></span>{{ dash_button|title }}');
+                document.getElementById('dash_button').onclick = function () {
+                    window.location.href = '{% url 'invoicing' %}?action=new_invoice_item'
+                };
+            {% endif %}
+
+            /* CLIENT DATA DISPLAY */
+            $("div.account_index").click(function () {
+                var id = "#" + $(this).attr("id");
+                $("div.account_data" + id).slideToggle('medium');
+            });
+            $("div.account_data").click(function () {
+                var id = "#" + $(this).attr("id");
+                $("div.account_data" + id).slideUp('medium');
+            });
+            /* if displaying only one client, slide down when displayed */
+            if (getQueryString('action') == 'view_account' || getQueryString('action') == 'view_invoice') {
+                $("div.account_data").slideDown('fast');
+            }
+
+            /* INVOICE FORM DISPLAY */
+
+            var $disabled = '';
+            var $select_disabled = $("select#id_invoice_items:disabled").length;
+            if ($select_disabled) {
+                $disabled = 'disabled';
+            }
+            $('div#item_qty_input-group').hide();
+            $("select#id_invoice_items option").click(function () {
+                if (!($("div#item_qty div#" + $(this).val()).length)) {
+                    $('div#item_qty_input-group').slideDown('fast');
+                    $("div#item_qty").append(add_field($(this).text(), $(this).val()));
+                }
+            });
+            {% if item_qty %}
+                $('div#item_qty_input-group').slideDown('fast');
+                {% for n in item_qty %}
+                    $("div#item_qty").append(add_field(
+                        $("select#id_invoice_items option[value={{ n.0 }}]").text(), {{ n.0 }}));
+                {% endfor %}
+            {% endif %}
+
+            function add_field(label_text, item_id) {
+                return '<div class="field-group" id="' + item_id + '"><div class="label label-primary">' +
+                    label_text + '</div>' +
+                    '<div class="the_field"><select class="form-control item_qty" ' + $disabled + ' name="item_qty_field_'
+                    + item_id + '"></div>' +
+                    build_options(item_id) + '</select></div>'
+
+            }
+
+            function build_options(item_id) {
+                var $existing_qty = 0;
+                {% for n in item_qty %}
+                    if (item_id == {{ n.0 }}) {
+                        $existing_qty = {{ n.1 }};
+                    }
+                {% endfor %}
+                var $quantity_options = "";
+                for (var i = 0; i <= 20; i++) {
+                    if (i == $existing_qty) {
+                        $quantity_options += "<option value=" + i + " selected='selected'>" + i + "</option>"
+                    }
+                    else {
+                        $quantity_options += "<option value=" + i + ">" + i + "</option>"
+                    }
+                }
+                return $quantity_options
+            }
+
+            /* INVOICE ITEMS */
+
+            {% if request.GET.action == 'new_invoice_item' %}
+                $('div#retire_field').hide();
+            {% endif %}
+            /* if displaying only once invoice item*/
+            {% if request.GET.action == 'view_invoice_item' %}
+                $('div.account_data').slideDown('fast');
+            {% endif %}
+        });
+
+        /**
+         * Get the value of a querystring
+         */
+        var getQueryString = function (field, url) {
+            var href = url ? url : window.location.href;
+            var reg = new RegExp('[?&]' + field + '=([^&#]*)', 'i');
+            var string = reg.exec(href);
+            return string ? string[1] : null;
+        };
+
+    </script>
+{% endblock %}

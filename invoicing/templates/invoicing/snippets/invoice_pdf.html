@@ -1,0 +1,288 @@
+{% load i18n %}
+{% load l10n %}
+{% load tz %}
+{% load bootstrap3 %}
+{% load invoicing_extras %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>{% trans 'Invoice#' %}{{ invoice_number }}</title>
+</head>
+<body>
+<div id="invoice_pdf">
+    <header>
+        {% if business_logo %}
+            <div id="account_form_business_logo">
+                <img src="{{ business_logo }}" title="Business logo"/>
+            </div>
+        {% endif %}
+        {% if business_name_in_header %}
+            <div id="company_name">{{ invoice_data|get_dict_value:'Issued by, company_name' }}</div>
+            {% if  invoice_data|get_dict_value:'Invoice status' == 'PAID IN FULL' %}
+                <div id="document_type">{% trans 'Receipt'|upper %}</div>
+            {% else %}
+                <div id="document_type">{% trans 'Invoice'|upper %}</div>
+            {% endif %}
+        {% endif %}
+    </header>
+    <hr>
+    <div id="invoice_number"><h3 class="title_text inline_title">{% trans 'Invoice number: ' %}</h3>{{ invoice_number }}
+    </div>
+    <div class="section_block" id="invoice_pdf_issued_by">
+        <div class="row">
+            <h3 class="heading title_text inline_title">{% trans 'Issued by' %}:</h3>
+            <span class="general_item">{{ invoice_data|get_dict_value:'Issued by, company_name' }} |
+                <a href="http://{{ invoice_data|get_dict_value:'Issued by, company_website' }}">
+                    {{ invoice_data|get_dict_value:'Issued by, company_website' }}</a></span>
+        </div>
+    </div>
+    <hr>
+    <div class="section_block" id="invoice_pdf_business_details">
+
+        <table id="invoice_general_details">
+            <thead>
+            <tr>
+                <th>{% trans 'Invoice from'|title %}</th>
+                <th>{% trans 'Issued to'|title %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <div>
+                        {% if invoice_data|get_dict_value:'Issued by, company_name' %}
+                            <span class="fieldname">
+                        {% trans 'Business name' %}</span>{{ invoice_data|get_dict_value:'Issued by, company_name' }}
+                        {% else %}
+                            <span class="fieldname">
+                        {% trans 'Account name' %}</span>{{ invoice_data|get_dict_value:'Issued by, account_name' }}
+                        {% endif %}
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Business website' %}</span>
+                        <a href="http://{{ invoice_data|get_dict_value:'Issued by, company_website' }}">
+                            {{ invoice_data|get_dict_value:'Issued by, company_website' }}</a>
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Building' %}</span>{{ invoice_data|get_dict_value:'Issued by, addr_name' }}
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Street address' %}</span>{{ invoice_data|get_dict_value:'Issued by, addr_number' }},
+                        {{ invoice_data|get_dict_value:'Issued by, addr_street' }}</div>
+                    <div><span
+                            class="fieldname">{% trans 'Locality' %}</span>{{ invoice_data|get_dict_value:'Issued by, addr_locality' }}
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Town' %}</span>{{ invoice_data|get_dict_value:'Issued by, addr_town' }}
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'County' %}</span>{{ invoice_data|get_dict_value:'Issued by, addr_county' }}
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Postcode' %}</span>{{ invoice_data|get_dict_value:'Issued by, addr_postcode' }}
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Contact email' %}</span>
+                        <a href="mailto:{{ invoice_data|get_dict_value:'Issued by, contact_email' }}">
+                            {{ invoice_data|get_dict_value:'Issued by, contact_email' }}</a>
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Contact phone' %}</span>{{ invoice_data|get_dict_value:'Issued by, contact_phone' }}
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        {% if invoice_data|get_dict_value:'Client, company_name' %}
+                            <span class="fieldname">
+                        {% trans 'Business name' %}</span>{{ invoice_data|get_dict_value:'Client, company_name' }}
+                        {% else %}
+                            <span class="fieldname">
+                        {% trans 'Account name' %}</span>{{ invoice_data|get_dict_value:'Client, account_name' }}
+                        {% endif %}
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Business website' %}</span>
+                        <a href="http://{{ invoice_data|get_dict_value:'Client, company_website' }}">
+                            {{ invoice_data|get_dict_value:'Client, company_website' }}</a>
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Building' %}</span>{{ invoice_data|get_dict_value:'Client, addr_name' }}
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Street address' %}</span>
+                        {% if invoice_data|get_dict_value:'Client, addr_number' %}
+                            {{ invoice_data|get_dict_value:'Client, addr_number' }}, {% endif %}
+                        {{ invoice_data|get_dict_value:'Client, addr_street' }}</div>
+                    <div><span
+                            class="fieldname">{% trans 'Locality' %}</span>{{ invoice_data|get_dict_value:'Client, addr_locality' }}
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Town' %}</span>{{ invoice_data|get_dict_value:'Client, addr_town' }}
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'County' %}</span>{{ invoice_data|get_dict_value:'Client, addr_county' }}
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Postcode' %}</span>{{ invoice_data|get_dict_value:'Client, addr_postcode' }}
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Contact email' %}</span>
+                        <a href="mailto:{{ invoice_data|get_dict_value:'Client, contact_email' }}">
+                            {{ invoice_data|get_dict_value:'Client, contact_email' }}</a>
+                    </div>
+                    <div><span
+                            class="fieldname">{% trans 'Contact phone' %}</span>{{ invoice_data|get_dict_value:'Client, contact_phone' }}
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <ul class="invoice_items">
+        <li>
+            <h3 class="title_text">{% trans 'Invoice details' %}</h3>
+            <hr>
+        </li>
+        <li>
+            <span class="fieldname">{% trans 'Invoice status' %}</span>
+            <span>{{ invoice_data|get_dict_value:'Invoice status' }}</span>
+        </li>
+        <li>
+            <span class="fieldname">{% trans 'Invoice issued' %}</span>
+            <span>{{ invoice_data|get_dict_value:'Issued'|date:'d F Y' }}</span>
+        </li>
+        <li>
+            <span class="fieldname">{% trans 'Invoice due' %}</span>
+            <span {% if invoice_data|get_dict_value:'Overdue' %}style="color: red"{% endif %}>{{ invoice_data|get_dict_value:'Invoice due'|date:'d F Y' }}</span>
+        </li>
+        {% if invoice_data|get_dict_value:'Invoice status' == 'PAID IN FULL' %}
+            <li>
+                <span class="fieldname">{% trans 'Date marked as paid' %}</span>
+                <span>{{ invoice_data|get_dict_value:'Date marked as paid'|date:'d F Y' }}</span>
+            </li>
+        {% endif %}
+        <li>
+            <span class="fieldname">{% trans 'Discount' %}</span>
+            <span>{% if invoice_data|get_dict_value:'Discount' %}{{ invoice_data|get_dict_value:'Discount' }}%
+            {% else %}0%{% endif %}</span>
+        </li>
+        <li>
+            <span class="fieldname">{% trans 'Tax status' %}</span>
+            <span>{% get_invoice_tax_status invoice_data|get_dict_value:'Tax status' %}</span>
+        </li>
+    </ul>
+    <ul class="invoice_items">
+        <li>
+            <h3 class="title_text">{% trans 'Invoice items' %}</h3>
+            <hr>
+        </li>
+        {% for i in invoice_data|get_dict_value:'Items' %}
+            <li>
+                <span class="fieldname">{{ i.name }}</span>
+                <ul class="item_details">
+                    <li>
+                        <span class="fieldname">{% trans 'Description' %}</span>
+                        <span>{{ i.desc }}</span>
+                    </li>
+                    <li>
+                                        <span class="fieldname">
+                                            {% trans 'Price ' %}({{ currency_symbol }})
+                                            ({% trans 'exc. tax' %})</span>
+                        <span>{{ i.price }}</span>
+                    </li>
+                    <li>
+                                        <span class="fieldname">
+                                            {% trans 'Tax rated' %}</span>
+                        <span>{% get_item_tax_status i.tax_status %}</span>
+                    </li>
+                    <li>
+                        <span class="fieldname">{% trans 'Quantity' %}</span>
+                        <span>{{ i.qty }}</span>
+                    </li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+    <ul class="invoice_items">
+        <li>
+            {#            <h3 class="title_text">{% trans 'Charges breakdown' %}</h3>#}
+            <hr>
+        </li>
+        <li>
+            <table id="invoice_totals">
+                <thead>
+                <tr>
+                    <th>{% trans 'Charge totals' %}</th>
+                    <th>{% trans 'Amount' %}({{ currency_symbol }})</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{% trans 'Total for all items' %} (exc.tax)</td>
+                    <td>{{ invoice_data|get_dict_value:'Items total' }}</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Total after any discount applied' %} (exc. tax)</td>
+                    <td>{{ invoice_data|get_dict_value:'Total after discount' }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Grand total'|upper %} (inc. tax if required)</td>
+                    <td class="grandtotal" style="color:
+                            {% if invoice_data|get_dict_value:'Invoice status' == 'ISSUED' or invoice_data|get_dict_value:'Invoice status' == 'SENT' %}
+                                green
+                            {% elif invoice_data|get_dict_value:'Invoice status' == 'CANCELLED' or invoice_data|get_dict_value:'Invoice status' == 'DRAFT' %}
+                                grey
+                            {% elif invoice_data|get_dict_value:'Invoice status' == 'OVERDUE' or invoice_data|get_dict_value:'Invoice status' == 'PAID PARTIALLY' %}
+                                red
+                            {% else %}black{% endif %};{% if invoice_data|get_dict_value:'Invoice status' == 'CANCELLED' %}
+                        text-decoration:line-through;{% endif %}">{{ invoice_data|get_dict_value:'Total after tax' }}</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Amount paid' %}({{ currency_symbol }})</td>
+                    <td>{% if invoice_data|get_dict_value:'Amount paid' %}
+                        {{ invoice_data|get_dict_value:'Amount paid' }}
+                    {% else %}0.00{% endif %}</td>
+                </tr>
+                <tr>
+                    <td>{% trans 'Amount outstanding'|upper %}</td>
+                    <td class="grandtotal" style="color:
+                            {% if invoice_data|get_dict_value:'Amount outstanding' <= 0 or not invoice_data|get_dict_value:'Amount outstanding' %}
+                                green
+                            {% else %}red{% endif %};{% if invoice_data|get_dict_value:'Invoice status' == 'CANCELLED' %}
+                        text-decoration:line-through;{% endif %}">
+                        {% if invoice_data|get_dict_value:'Amount outstanding' %}
+                            {{ invoice_data|get_dict_value:'Amount outstanding' }}
+                        {% else %}0.00{% endif %}</td>
+                </tr>
+                </tbody>
+            </table>
+        </li>
+    </ul>
+    {% if invoice_data|get_dict_value:'Invoice status' != 'PAID IN FULL' and invoice_data|get_dict_value:'Invoice status' != 'CANCELLED' %}
+        <ul class="invoice_items">
+            <li>
+                {% include 'invoicing/snippets/pdf_payment_details.html' %}
+            </li>
+        </ul>
+    {% endif %}
+    <ul class="invoice_items">
+        <li>
+            {% include 'invoicing/snippets/pdf_legal.html' %}
+        </li>
+    </ul>
+    <ul class="invoice_items">
+        <li>
+            {% include 'invoicing/snippets/pdf_footer.html' %}
+        </li>
+    </ul>
+    <ul class="invoice_items pdf_footer_services">
+        <li>
+            {% include 'invoicing/snippets/pdf_footer_services.html' %}
+        </li>
+    </ul>
+</div>
+</body>
+</html>

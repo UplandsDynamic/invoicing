@@ -1,0 +1,14 @@
+djangorestframework
+django-bootstrap3
+django-anymail[postmark]
+docutils
+django-redis
+stripe
+django-haystack
+django-ipware
+whoosh
+django-extensions
+Weasyprint
+html2text
+django_q
+pytz

@@ -1,0 +1,182 @@
+{% load bootstrap3 %}
+{% load i18n %}
+{% load l10n %}
+{% load invoicing_extras %}
+<div class="accounts_display">
+    <div id="pdf_dialog"></div>
+    <div class="view_clients_blurb">
+        <p>{{ blurb|safe }}</p>
+        <hr>
+    </div>
+    {% if invoices %}
+        {% for invoice in invoices %}
+            <div class="account_index" id="_{{ forloop.counter }}">
+                <ul>
+                    <li><span
+                            class="fieldname">{% trans 'Invoice number' %}: </span>{{ invoice|get_dict_value:'Invoice number' }}
+                    </li>
+                    <li><span
+                            class="fieldname">{% trans 'Invoice due' %}: </span>{{ invoice|get_dict_value:'Invoice due'|date:"d F Y" }}
+                    </li>
+                    <li><span
+                            class="fieldname">{% trans 'Issued by' %}: </span>{{ invoice|get_dict_value:'Issued by, account_name' }}
+                    </li>
+                    <li><span
+                            class="fieldname">{% trans 'Issued to' %}: </span>{{ invoice|get_dict_value:'Client, account_name' }}
+                    </li>
+                </ul>
+            </div>
+            <div class="account_data" id="_{{ forloop.counter }}">
+                <ul>
+                    <li><span
+                            class="fieldname">{% trans 'Created' %}: </span>{{ invoice|get_dict_value:'Created'|date:"d F Y" }}
+                    </li>
+                    <li><span
+                            class="fieldname">{% trans 'Issued' %}: </span>{{ invoice|get_dict_value:'Issued'|date:"d F Y" }}
+                    </li>
+                    <li><span class="fieldname">{% trans 'Discount' %}: </span>
+                        {% if invoice|get_dict_value:'Discount' %}
+                            {{ invoice|get_dict_value:'Discount' }}%{% else %}0%{% endif %}
+                    </li>
+                    <li><span
+                            class="fieldname">{% trans 'Tax status' %}: </span>{{ invoice|get_dict_value:'Tax status' }}
+                    </li>
+                    <li><span
+                            class="fieldname">{% trans 'Invoice status' %}: </span>{{ invoice|get_dict_value:'Invoice status' }}
+                    </li>
+                    <li><span
+                            class="fieldname">{% trans 'Date marked as paid' %}: </span>{{ invoice|get_dict_value:'Date marked as paid'|date:"d F Y" }}
+                    </li>
+                    <li><span class="fieldname">{% trans 'Invoice email sent' %}: </span>
+                        {% if invoice|get_dict_value:'Invoice email sent' %}{% trans 'Yes' %}{% else %}
+                            {% trans 'No' %}{% endif %}</li>
+                    <li><span class="fieldname">{% trans 'Receipt email sent' %}: </span>
+                        {% if invoice|get_dict_value:'Receipt email sent' %}{% trans 'Yes' %}{% else %}
+                            {% trans 'No' %}{% endif %}</li>
+                    <li><span class="fieldname">{% trans 'Items' %}: </span>
+                        <ul>
+                            {% for i in invoice|get_dict_value:'Items' %}
+                                <li>
+                                    {{ i.item.item_name }} (x{{ i.quantity }})
+                                    <ul>
+                                        <li><span class="fieldname">{% trans 'Item description' %}:</span>
+                                            <p>{{ i.item.desc }}</p></li>
+                                        <li><span
+                                                class="fieldname">{% trans 'Cost per unit' %} ({{ currency_symbol }}): </span>{{ i.item.price }}
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li><span
+                            class="fieldname">{% trans 'Items total' %} ({{ currency_symbol }}): </span>{{ invoice|get_dict_value:'Items total' }}
+                    </li>
+                    <li><span
+                            class="fieldname">{% trans 'Total after discount' %} ({{ currency_symbol }}): </span>{{ invoice|get_dict_value:'Total after discount' }}
+                    </li>
+                    <li><span
+                            class="fieldname">{% trans 'Total after tax' %} ({{ currency_symbol }}): </span>{{ invoice|get_dict_value:'Total after tax' }}
+                    </li>
+                    <li><span
+                            class="fieldname">{% trans 'Total paid' %} ({{ currency_symbol }}): </span>
+                        {% if  invoice|get_dict_value:'Amount paid' %}
+                            {{ invoice|get_dict_value:'Amount paid' }}{% else %}0.00{% endif %}
+                    </li>
+                    <li><span
+                            class="fieldname">{% trans 'Amount outstanding' %} ({{ currency_symbol }}): </span>
+                        {% if  invoice|get_dict_value:'Amount outstanding' %}
+                            {{ invoice|get_dict_value:'Amount outstanding' }}{% else %}0.00{% endif %}
+                    </li>
+                    <li><span
+                            class="fieldname">{% trans 'Recurring invoice' %}: </span>{{ invoice|get_dict_value:'Recurring period'|recurring_human_readable }}
+                    </li>
+                </ul>
+                <ul id="view_invoice_action_buttons">
+                    {% if invoice|get_dict_value:'Invoice status' >= invoice_status_choices.1.1 %}
+                        <!-- gen pdf link (action by js GenPDF function in invoicing.html -->
+                        <li class="invoice_record_link">
+                            {% if invoice|get_dict_value:'Invoice status' == invoice_status_choices.5.1 %}
+                                <a id="gen_pdf_button" class="btn btn btn-primary"
+                                   onclick="GenPDF('{% get_invoice_number invoice %}', '{{ pdf_types.receipt }}');return false;"
+                                   title="Generate PDF for this receipt">
+                                    {% trans 'View receipt PDF' %}
+                                </a>
+                            {% else %}
+                                <a id="gen_pdf_button" class="btn btn btn-primary"
+                                   onclick="GenPDF('{% get_invoice_number invoice %}', '{{ pdf_types.invoice }}');return false;"
+                                   title="Generate PDF for this invoice">
+                                {% trans 'View Invoice PDF' %}
+                            {% endif %}
+                            </a>
+                        </li>
+                        <!-- end gen pdf link -->
+                    {% endif %}
+                    <!-- email pdf link -->
+                    <li class="invoice_record_link">
+                        {% if  invoice|get_dict_value:'Invoice status' == invoice_status_choices.0.1 %}
+                            <!-- do not present email button for a draft status -->
+                        {% elif invoice|get_dict_value:'Invoice status' == invoice_status_choices.5.1 %}
+                            <a class="btn btn btn-primary" href="
+
+
+
+
+
+                                    {{ param_str }}{{ email_pdf_param_str }}&pdf_type={{ pdf_types.receipt }}&{{ invoice_number_param_str }}={% get_invoice_number invoice %}">
+                                {% trans 'Email receipt PDF' %}
+                            </a>
+                        {% elif invoice|get_dict_value:'Invoice status' == invoice_status_choices.6.1 %}
+                            <!-- don't show anything here if invoice cancelled -->
+                        {% else %}
+                            <a class="btn btn btn-primary" href="
+
+
+
+
+                                    {{ param_str }}{{ email_pdf_param_str }}&pdf_type={{ pdf_types.invoice }}&{{ invoice_number_param_str }}={% get_invoice_number invoice %}">
+                            {% trans 'Email invoice PDF' %}{% endif %}
+                        </a>
+                    </li>
+                    <!-- end email pdf link -->
+                    <!-- edit link -->
+                    <li class="invoice_record_link">
+                        <a class="btn btn btn-primary" href="
+
+
+
+
+                                {{ param_str }}{{ edit_inv_param_str }}&{{ invoice_number_param_str }}={% get_invoice_number invoice %}">{{ edit_invoice_button }}</a>
+                    </li>
+                    <!-- end edit link -->
+                </ul>
+            </div>
+            <hr>
+        {% endfor %}
+    {% else %}
+        {{ no_results }}
+    {% endif %}
+</div>
+
+<script>
+    /* GENERATE PDF BUTTON FUNCTION (called from button) */
+    function GenPDF(invoice_number, pdf_type) {
+        var url = "{% url 'invoicing' %}" + "{{ param_str }}{{ gen_pdf_param_str }}&pdf_type=" + pdf_type + "&{{ invoice_number_param_str }}=" + invoice_number;
+        $("#pdf_dialog").html('<div"><iframe width="950" height="950" src=' + url + '></iframe></div>').dialog('open');
+    }
+
+    $("#pdf_dialog").dialog({
+        dialogClass: "no-close",
+        title: 'PDF',
+        width: 1050,
+        {#        height: 1100,#}
+        resizable: true,
+        autoOpen: false,
+        modal: true,
+        buttons: {
+            Cancel: function () {
+                $(this).dialog('close');
+            }
+        }
+    });
+</script>

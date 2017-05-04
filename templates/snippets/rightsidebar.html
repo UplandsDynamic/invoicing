@@ -1,0 +1,72 @@
+{% load bootstrap3 %}
+{% if right_sidebar_links or default_right_sidebar_links %}
+    <ul id="right_sidebar_links_list">
+        {% if right_sidebar_links %}
+            {% for l in right_sidebar_links %}
+                <li><a href="{{ l.url }}" target={{ l.target }}>{{ l.link_text|safe }}</a></li>
+            {% endfor %}
+        {% else %}
+            {% for l in default_right_sidebar_links %}
+                <li><a href="{{ l.url }}" target={{ l.target }}>{{ l.link_text|safe }}</a></li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+{% endif %}
+{% if right_sidebar_image %}
+    <div id="right_sidebar_image">
+        <a href="{{ right_sidebar_image_url }}">
+            <img src="{{ right_sidebar_image }}" class="right-sidebar-img img-responsive img-fluid img-rounded"
+                 alt="{{ right_sidebar_image_desc }}" title="{{ right_sidebar_image_desc }}"/>
+        </a>
+    </div>
+{% else %}
+    <div id="right_sidebar_image">
+        <a href="{{ default_right_sidebar_image_url }}">
+            <img src="{{ default_right_sidebar_image }}" class="right-sidebar-img img-responsive img-fluid img-rounded"
+                 alt="{{ default_right_sidebar_image_desc }}" title="{{ default_right_sidebar_image_desc }}"/>
+        </a>
+    </div>
+{% endif %}
+{% if right_sidebar_search %}
+    <div id="right_sidebar_search">
+        <form role="form" id="right_search_form" action="" method="GET">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group search_form_group">
+                            {% for field in form_right_search.visible_fields %}
+                                <div class="input-group">
+                                    <div class="the_field">{{ field }}</div>
+                                </div>
+                            {% endfor %}
+                        <input type="hidden" value="{{ request.GET.action }}" name="action" />
+                                <div id="right_search_button">
+                                    {% bootstrap_button right_sidebar_search_button_text button_type="submit" button_class="btn-success search_form_submit" %}
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endif %}
+{% if right_sidebar_blurb %}
+    <div id="right_sidebar_blurb">
+        <span class="glyphicon glyphicon-info-sign"></span> {{ right_sidebar_blurb|safe }}
+    </div>
+{% else %}
+    <div id="right_sidebar_blurb">
+        {{ default_right_sidebar_blurb|safe }}
+    </div>
+{% endif %}
+{% if tag_line %}
+    <div id="tagline">
+        <small>{{ tag_line }}</small>
+    </div>
+{% else %}
+    <div id="tagline">
+        <small>{{ default_tag_line }}</small>
+    </div>
+{% endif %}
+<!-- <hr id="right_sidebar_hr"> -->
