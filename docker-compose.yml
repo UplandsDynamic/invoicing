@@ -7,7 +7,7 @@ services:
     command: supervisord -n
     volumes:
       - .:/home/docker/code
-      - /apps/docker_persistent_volumes/aninstance:/home/docker/docker_persistent_volumes
+      - /apps/docker_persistent_volumes/aninstance-invoicing:/home/docker/docker_persistent_volumes
     ports:
       - "127.0.0.1:8082:80"
     depends_on:
