@@ -12,7 +12,9 @@ def default_strings(request):
         'default_site_logo_desc': _('Aninstance Invoicing Application'),
         'default_site_logo_url': '/',
         'default_footer_text': _('~ Aninstance Invoicing created by Dan Bright, at '
-                                 '<a href="https://www.aninstance.com">www.aninstance.com</a> ~'),
+                                 '<a href="https://www.aninstance.com">www.aninstance.com</a> | '
+                                 '<a href="https://www.github.com/aninstance/invoicing" target="_blank">'
+                                 'View on Github</a> ~'),
         'default_site_name': DEFAULT_SITE_NAME,
         'default_tag_line': _('Feel free to get in touch with bug reports, suggestions, or enquires about'
                               ' subscribing to a managed instance: productions@aninstance.com'),
