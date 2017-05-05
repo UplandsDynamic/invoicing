@@ -11,3 +11,4 @@ commit_and_push.sh
 __pycache__
 whoosh_index/*
 sync_from_main_repo.sh
+placecholder
