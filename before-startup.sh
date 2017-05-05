@@ -1,7 +1,7 @@
 #!/bin/bash
 ## TO BE RUN WITHIN CONTAINER WHEN CONTAINER RUNNING!
 # update very latest django from from git to patch bugs etc
-/usr/bin/git -C /usr/local/lib/python3.5/dist-packages/django-git pull -a; && \
+/usr/bin/git -C /usr/local/lib/python3.5/dist-packages/django-git pull -a;
 # change git to lower version whilst template creation bug persists
 /usr/bin/git -C /usr/local/lib/python3.5/dist-packages/django-git checkout stable/1.10.x && \
 rm -rf /usr/local/lib/python3.5/dist-packages/django && \
