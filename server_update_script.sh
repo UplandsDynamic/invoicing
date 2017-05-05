@@ -10,6 +10,6 @@ chown aninstance:root /apps/docker_persistent_volumes/aninstance-invoicing/media
 chmod +x /apps/aninstance-invoicing/before-startup.sh;
 sudo -u dan docker-compose up --force-recreate --build -d;
 sudo -u dan docker exec -it aninstanceinvoicing_aninstance_1 /bin/bash /home/docker/code/before-startup.sh;
-chown -R aninstance /apps/aninstance-invoicing/aninstance/whoosh_index;~~
+chown -R aninstance /apps/aninstance-invoicing/aninstance/whoosh_index;
 sudo -u dan docker-compose restart;
 echo "Aninstance invoicing invoicing is now updated!";
