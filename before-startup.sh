@@ -13,6 +13,5 @@ python3.5 /home/docker/code/manage.py collectstatic --noinput;
 python3.5 /home/docker/code/manage.py makemessages -l en_GB && \
 python3.5 /home/docker/code/manage.py compilemessages;
 python3.5 /home/docker/code/manage.py rebuild_index --noinput;
-chown -R aninstance /home/docker/code/aninstance/whoosh_index;
 chown -R aninstance /home/docker/docker_persistent_volumes;
 redis-cli -h redis flushall;

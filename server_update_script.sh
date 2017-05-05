@@ -3,6 +3,7 @@ git fetch --all;
 git reset --hard origin/master;
 # set permissions
 chown -R aninstance /apps/aninstance-invoicing;
+chown -R aninstance /apps/aninstance-invoicing/aninstance/whoosh_index;
 chmod 750 /apps/aninstance-invoicing;
 chown -R aninstance:www-data /apps/docker_persistent_volumes/aninstance-invoicing/media/logo;
 chmod 700 /apps/docker_persistent_volumes/aninstance-invoicing/media/protected;
