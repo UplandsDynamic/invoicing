@@ -37,6 +37,9 @@ STATICFILES_DIRS = [
 ]
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+SQLITE_DIR = '/home/docker/docker_persistent_volumes/sqlite'
+STATIC_ROOT = '/home/docker/volatile/static/'
+MEDIA_ROOT = '/home/docker/docker_persistent_volumes/media/'
 
 # Append unique MD5 hash to end of static files, so old versions aren't served from cache when version upgraded
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
@@ -177,9 +180,6 @@ Q_CLUSTER = {
 
 # PRODUCTION MODE (i.e. if DEBUG = False)
 if not DEBUG:
-    STATIC_ROOT = '/home/docker/volatile/static/'
-    MEDIA_ROOT = '/home/docker/docker_persistent_volumes/media/'
-    SQLITE_DIR = '/home/docker/docker_persistent_volumes/sqlite'
     SECURE_SSL_REDIRECT = True  # network & session
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
@@ -238,8 +238,6 @@ if not DEBUG:
 else:
     SESSION_COOKIE_SECURE = False
     SECURE_SSL_REDIRECT = False
-    STATIC_ROOT = '{}/../dev_static'.format(os.getcwd())  # set local roots
-    MEDIA_ROOT = '{}/../dev_media'.format(os.getcwd())
     CACHES = {'default':
                   {'BACKEND': 'django.core.cache.backends.dummy.DummyCache', },
               'template_fragments':
@@ -248,7 +246,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'aninstance_db',
+            'NAME': os.path.join(SQLITE_DIR, 'aninstance_db'),
         }
     }
 
@@ -264,7 +262,7 @@ INVOICING = {'DEFAULT_INVOICE_PREPEND': 'ANI',
              'LOGO_SIZE': (75, 75),
              'LOGO_MAX_FILESIZE': 1024 * 1024,
              'BUSINESS_NAME_IN_PDF_HEADER': True,
-             'PDF_DIR': os.path.join(MEDIA_ROOT, 'protected', 'pdf'),
+             'PDF_DIR': os.path.relpath(os.path.join(MEDIA_ROOT, 'protected', 'pdf')),
              'EMAIL_ACTIVE': True,
              }
 

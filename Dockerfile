@@ -18,16 +18,12 @@ supervisor \
 iputils-ping
 RUN pip3 install --upgrade pip
 # install uwsgi now because it takes a little while
-RUN pip3 install uwsgi
+RUN pip3.5 install uwsgi
 # install uwsgi plugin
 RUN apt install -y uwsgi-plugin-python3
-# install django HEAD via git for the latest bug fixes
-RUN apt install git -y
-RUN /usr/bin/git clone https://github.com/django/django.git /usr/local/lib/python3.5/dist-packages/django-git
-RUN cp -R /usr/local/lib/python3.5/dist-packages/django-git/django /usr/local/lib/python3.5/dist-packages/django
-# setup all the configfiles
+# setup all the config files
 COPY aninstance/requirements.txt /home/docker/code/aninstance/
-RUN pip3 install -r /home/docker/code/aninstance/requirements.txt
+RUN pip3.5 install -r /home/docker/code/aninstance/requirements.txt
 VOLUME ["/home/docker/code"]
 VOLUME ["/home/docker/docker_persistent_volumes"]
 RUN rm -rf /etc/nginx/nginx.conf
