@@ -7,10 +7,12 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ewt7vvulgjq=hdn8(s15sqqzu&fa4+igtr57*-1-3#1$!h%tpz'
 
+DOCKERIZED = True  # Note: Remember to change to True for docker deployment!
 DEBUG = False  # Note: Remember to change to False for production!
 DEMO = True  # Note: authentication to invoicing section NOT REQUIRED when demo is True! Also, disables email.
 print('INFO: DEBUG IS SET TO: {}'.format(DEBUG))
 print('INFO: DEMO MODE IS SET TO: {}'.format(DEMO))
+print('INFO: DOCKERIZED MODE IS SET TO: {}'.format(DOCKERIZED))
 
 # # # LANGUAGE/ TIMEZONE / INTERNATIONALIZATION
 LOCALE_PATHS = (
@@ -27,7 +29,7 @@ USE_TZ = True
 
 # # # NETWORK
 SITE_FQDN = 'invoicing.aninstance.com'
-ALLOWED_HOSTS = ['invoicing.aninstance.com']
+ALLOWED_HOSTS = ['invoicing.aninstance.com', 'localhost', '127.0.0.1']
 ROOT_URLCONF = 'aninstance.urls'
 WSGI_APPLICATION = 'aninstance.wsgi.application'
 
@@ -37,9 +39,9 @@ STATICFILES_DIRS = [
 ]
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-SQLITE_DIR = '/home/docker/docker_persistent_volumes/sqlite'
-STATIC_ROOT = '/home/docker/volatile/static/'
-MEDIA_ROOT = '/home/docker/docker_persistent_volumes/media/'
+SQLITE_DIR = '/home/docker/docker_persistent_volumes/sqlite' if DOCKERIZED else os.path.join(BASE_DIR)
+STATIC_ROOT = '/home/docker/volatile/static/' if DOCKERIZED else os.path.join(BASE_DIR, 'dev_static')
+MEDIA_ROOT = '/home/docker/docker_persistent_volumes/media/' if DOCKERIZED else os.path.join(BASE_DIR, 'dev_media')
 
 # Append unique MD5 hash to end of static files, so old versions aren't served from cache when version upgraded
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
@@ -230,7 +232,7 @@ if not DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(SQLITE_DIR, 'aninstance-invoicing_db'),
+            'NAME': os.path.join(SQLITE_DIR, 'aninstance-invoicing_db')
         }
     }
 
@@ -246,7 +248,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(SQLITE_DIR, 'aninstance_db'),
+            'NAME': os.path.join(SQLITE_DIR, 'aninstance-invoicing_db')
         }
     }
 
@@ -262,7 +264,7 @@ INVOICING = {'DEFAULT_INVOICE_PREPEND': 'ANI',
              'LOGO_SIZE': (75, 75),
              'LOGO_MAX_FILESIZE': 1024 * 1024,
              'BUSINESS_NAME_IN_PDF_HEADER': True,
-             'PDF_DIR': os.path.relpath(os.path.join(MEDIA_ROOT, 'protected', 'pdf')),
+             'PDF_DIR': os.path.relpath(os.path.join('protected', 'pdf')),
              'EMAIL_ACTIVE': True,
              }
 

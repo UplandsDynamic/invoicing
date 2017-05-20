@@ -1051,7 +1051,7 @@ def pdf_gen_or_fetch_or_email(invoice_number=None, type=None, email=None, regene
                         'currency_symbol': settings.INVOICING.get('CURRENCY').get('SYMBOL')
                         }
         html_template = get_template('invoicing/snippets/invoice_pdf.html')
-        rendered_html = html_template.render(RequestContext(request, html_context)).encode(
+        rendered_html = html_template.render(html_context).encode(
             encoding='UTF-8')
         pdf_file = HTML(string=rendered_html).write_pdf(
             stylesheets=[CSS(settings.STATIC_ROOT + '/css/invoice_pdf.css')])
