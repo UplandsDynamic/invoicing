@@ -146,6 +146,10 @@
             <hr>
         </li>
         <li>
+            <span class="fieldname">{% trans 'Related ticket references' %}</span>
+            <span>{{ invoice_data|get_dict_value:'Related ticket references' }}</span>
+        </li>
+        <li>
             <span class="fieldname">{% trans 'Invoice status' %}</span>
             <span>{{ invoice_data|get_dict_value:'Invoice status' }}</span>
         </li>

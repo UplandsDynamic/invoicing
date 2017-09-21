@@ -103,6 +103,7 @@ class InvoiceForm(ModelForm):
                   'tax',
                   'invoice_status',
                   'invoice_number',
+                  'related_ticket_references',
                   'issued_by',
                   'invoice_emailed',
                   'receipt_emailed',
@@ -121,10 +122,12 @@ class InvoiceForm(ModelForm):
                                                                     months=self.Meta.model.MONTHS,
                                                                     attrs={
                                                                         'class': 'form-control invoice_date_widget'}))
+        self.fields['related_ticket_references'] = CharField(max_length=255)
         self.fields['invoice_items'] = ModelMultipleChoiceField(queryset=InvoiceItem.objects.all())
         self.fields['issued_by'] = ModelChoiceField(queryset=Account.objects.all())
         self.fields['paid_amount'] = DecimalField(max_digits=9, decimal_places=2)
         # # SET WIDGET ATTRIBUTES
+        self.fields['related_ticket_references'].widget = TextInput(attrs={'class': 'form-control'})
         self.fields['invoice_items'].widget = SelectMultiple(attrs={'class': 'form-control'})
         self.fields['invoice_items'].help_text = _('Select items, then quantities below')
         self.fields['paid_amount'].widget = self.MyNumberInput(attrs={'class': 'form-control', 'min': '0.00',

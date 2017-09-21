@@ -146,10 +146,10 @@ ANYMAIL = {
     "POSTMARK_SERVER_TOKEN": '',
     "POSTMARK_API_URL": '',
     "IGNORE_UNSUPPORTED_FEATURES": True,
-    "EMAIL_BACKEND": "anymail.backends.postmark.PostmarkBackend",  # or sendgrid, mailgun, SendGrid, etc - see AnyMail
+    "EMAIL_BACKEND": "anymail.backends.postmark.EmailBackend",  # or sendgrid, mailgun, SendGrid, etc - see AnyMail
 }
 
-EMAIL_BACKEND = "anymail.backends.postmark.PostmarkBackend"
+EMAIL_BACKEND = "anymail.backends.postmark.EmailBackend"
 DEFAULT_FROM_EMAIL = 'productions@aninstance.com'
 
 # # # DJANGO_Q

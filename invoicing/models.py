@@ -205,6 +205,8 @@ class Invoice(models.Model):
     invoice_number = models.CharField(max_length=255, blank=False, null=False, unique=True,
                                       default=model_functions.generate_invoice_random_id,
                                       verbose_name=_('Invoice number'))
+    related_ticket_references = models.CharField(max_length=255, blank=False, null=True, unique=False,
+                                                 verbose_name=_('Related ticket references'))
     datetime_created = models.DateTimeField(default=timezone.now, blank=False, null=True,
                                             verbose_name=_('Created'), editable=False)
     datetime_issued = models.DateTimeField(blank=True, null=True, verbose_name=_('Issued'))
