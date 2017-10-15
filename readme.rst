@@ -47,6 +47,8 @@ Features include:
 - Define tax rates for individual invoice items
 - Define tax status for individual invoices
 - Define discounts for individual invoices
+- Link ticket references to invoices
+- Add comments to invoices
 - Create recurring invoices
 - Auto-updating invoice statues: Draft, Issued, Sent, Overdue, Paid partially, Paid in full, Cancelled
 - Automatic generation of itemised bill totals (inc. tax & discounts)
