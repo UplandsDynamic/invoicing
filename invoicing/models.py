@@ -7,7 +7,7 @@ import uuid
 from django.utils import timezone
 from invoicing import model_functions
 from django.utils.translation import ugettext_lazy as _
-from django.core.validators import DecimalValidator
+from django.core.validators import DecimalValidator, MaxLengthValidator
 import re
 
 '''
@@ -207,6 +207,8 @@ class Invoice(models.Model):
                                       verbose_name=_('Invoice number'))
     related_ticket_references = models.CharField(max_length=255, blank=False, null=True, unique=False,
                                                  verbose_name=_('Related ticket references'))
+    invoice_comments = models.TextField(blank=True, null=False, unique=False, verbose_name=_('Invoice comments'),
+                                        validators=[MaxLengthValidator(2500)])
     datetime_created = models.DateTimeField(default=timezone.now, blank=False, null=True,
                                             verbose_name=_('Created'), editable=False)
     datetime_issued = models.DateTimeField(blank=True, null=True, verbose_name=_('Issued'))

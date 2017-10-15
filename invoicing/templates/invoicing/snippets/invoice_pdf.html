@@ -176,6 +176,10 @@
             <span class="fieldname">{% trans 'Tax status' %}</span>
             <span>{% get_invoice_tax_status invoice_data|get_dict_value:'Tax status' %}</span>
         </li>
+        <li>
+            <span class="fieldname">{% trans 'Additional invoice comments' %}</span>
+            <span>{{ invoice_data|get_dict_value:'Invoice comments' }}</span>
+        </li>
     </ul>
     <ul class="invoice_items">
         <li>

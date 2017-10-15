@@ -53,6 +53,12 @@
                     <li><span class="fieldname">{% trans 'Receipt email sent' %}: </span>
                         {% if invoice|get_dict_value:'Receipt email sent' %}{% trans 'Yes' %}{% else %}
                             {% trans 'No' %}{% endif %}</li>
+                    <li><span class="fieldname">{% trans 'Related ticket ref(s)' %}: </span>
+                    {{ invoice|get_dict_value:'Related ticket references' }}
+                    </li>
+                    <li><span class="fieldname">{% trans 'Invoice comments' %}: </span>
+                        {% if invoice|get_dict_value:'Invoice comments' %}
+                        <p>{{ invoice|get_dict_value:'Invoice comments' }}</p>{% endif %}</li>
                     <li><span class="fieldname">{% trans 'Items' %}: </span>
                         <ul>
                             {% for i in invoice|get_dict_value:'Items' %}
@@ -118,11 +124,6 @@
                             <!-- do not present email button for a draft status -->
                         {% elif invoice|get_dict_value:'Invoice status' == invoice_status_choices.5.1 %}
                             <a class="btn btn btn-primary" href="
-
-
-
-
-
                                     {{ param_str }}{{ email_pdf_param_str }}&pdf_type={{ pdf_types.receipt }}&{{ invoice_number_param_str }}={% get_invoice_number invoice %}">
                                 {% trans 'Email receipt PDF' %}
                             </a>
@@ -130,10 +131,6 @@
                             <!-- don't show anything here if invoice cancelled -->
                         {% else %}
                             <a class="btn btn btn-primary" href="
-
-
-
-
                                     {{ param_str }}{{ email_pdf_param_str }}&pdf_type={{ pdf_types.invoice }}&{{ invoice_number_param_str }}={% get_invoice_number invoice %}">
                             {% trans 'Email invoice PDF' %}{% endif %}
                         </a>
@@ -142,10 +139,6 @@
                     <!-- edit link -->
                     <li class="invoice_record_link">
                         <a class="btn btn btn-primary" href="
-
-
-
-
                                 {{ param_str }}{{ edit_inv_param_str }}&{{ invoice_number_param_str }}={% get_invoice_number invoice %}">{{ edit_invoice_button }}</a>
                     </li>
                     <!-- end edit link -->

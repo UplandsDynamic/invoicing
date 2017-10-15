@@ -104,6 +104,7 @@ class InvoiceForm(ModelForm):
                   'invoice_status',
                   'invoice_number',
                   'related_ticket_references',
+                  'invoice_comments',
                   'issued_by',
                   'invoice_emailed',
                   'receipt_emailed',
@@ -128,6 +129,9 @@ class InvoiceForm(ModelForm):
         self.fields['paid_amount'] = DecimalField(max_digits=9, decimal_places=2)
         # # SET WIDGET ATTRIBUTES
         self.fields['related_ticket_references'].widget = TextInput(attrs={'class': 'form-control'})
+        self.fields['related_ticket_references'].help_text = _('Ticket number(s) related to this invoice')
+        self.fields['invoice_comments'].widget = Textarea(attrs={'class': 'form-control'})
+        self.fields['invoice_comments'].help_text = _('Any additional comments about this invoice')
         self.fields['invoice_items'].widget = SelectMultiple(attrs={'class': 'form-control'})
         self.fields['invoice_items'].help_text = _('Select items, then quantities below')
         self.fields['paid_amount'].widget = self.MyNumberInput(attrs={'class': 'form-control', 'min': '0.00',
