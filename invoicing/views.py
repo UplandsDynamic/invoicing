@@ -65,7 +65,8 @@ class Invoicing(base.AninstanceGenericView):
     PARAM_STR_ACTION_EMAIL_FAIL = 'email_fail'
     PARAM_STR_PDF_TYPE = 'pdf_type'
     POST_ACTION_FIELD = 'form_hidden_field_post_action'
-    POST_ACCOUNT_ID_FIELD = 'account_id'  # added to pre-filled form as a hidden field when updating existing client
+    # added to pre-filled form as a hidden field when updating existing client
+    POST_ACCOUNT_ID_FIELD = 'account_id'
     POST_INVOICE_NUMBER_ID_FIELD = 'invoice_number'
     POST_INVOICE_ITEM_ID_FIELD = 'invoice_item_id'
     # OVERRIDES OF SUPERCLASS DEFAULTS (these also can be overridden yet again in this CBV's methods, later)
@@ -73,7 +74,8 @@ class Invoicing(base.AninstanceGenericView):
     FRAGMENT_KEY = 'invoicing'
     USE_CACHE = False
     PARAM_STR = 'action'
-    RIGHT_SIDEBAR_SEARCH_PLACEHOLDER_TEXT = _('Who?')  # requires overriding of form_right_search in context
+    # requires overriding of form_right_search in context
+    RIGHT_SIDEBAR_SEARCH_PLACEHOLDER_TEXT = _('Who?')
     RIGHT_SIDEBAR_SEARCH_BUTTON_TEXT = _('Find an account')
     PAGINATION_ITEMS_PER_PAGE = 5
     MODELS_TO_SEARCH = {'view_invoices': ['invoicing.invoice'],
@@ -87,11 +89,16 @@ class Invoicing(base.AninstanceGenericView):
                         }  # overwrite again in methods
     ITEMS_DASH_MENU = {'dropdown': [
         {'name': _('Dashboard'), 'action': 'dash'},
-        {'name': _('View client accounts'), 'action': PARAM_STR_ACTION_VIEW_ACCOUNTS},
-        {'name': _('Create new account'), 'action': PARAM_STR_ACTION_NEW_ACCOUNT},
-        {'name': _('View invoice items'), 'action': PARAM_STR_ACTION_VIEW_INVOICE_ITEMS},
-        {'name': _('View business profiles'), 'action': PARAM_STR_ACTION_VIEW_BUSINESS_ACCOUNTS},
-        {'name': _('Docs: Usage instructions'), 'action': PARAM_STR_ACTION_USAGE},
+        {'name': _('View client accounts'),
+         'action': PARAM_STR_ACTION_VIEW_ACCOUNTS},
+        {'name': _('Create new account'),
+         'action': PARAM_STR_ACTION_NEW_ACCOUNT},
+        {'name': _('View invoice items'),
+         'action': PARAM_STR_ACTION_VIEW_INVOICE_ITEMS},
+        {'name': _('View business profiles'),
+         'action': PARAM_STR_ACTION_VIEW_BUSINESS_ACCOUNTS},
+        {'name': _('Docs: Usage instructions'),
+         'action': PARAM_STR_ACTION_USAGE},
     ],
     }
 
@@ -110,7 +117,8 @@ class Invoicing(base.AninstanceGenericView):
             'form_right_search': RightSidebarSearchForm(  # overridden to redefine placeholder
                 placeholder=self.RIGHT_SIDEBAR_SEARCH_PLACEHOLDER_TEXT),
         })
-        self.authentication_required = True if not settings.DEMO else False  # require authorization for this CBV
+        # require authorization for this CBV
+        self.authentication_required = True if not settings.DEMO else False
         self.auth_level = auth.USER_LEVEL.get('staff')
 
     def get(self, request):
@@ -205,7 +213,7 @@ class Invoicing(base.AninstanceGenericView):
         elif action == self.PARAM_STR_ACTION_PDF_GEN:  # generate PDF view
             return self.pdf_view(request, invoice_number=helpers.sanitize_url_param(request.GET.get(
                 self.PARAM_STR_ID_INVOICE_NUMBER)), pdf_type=PDF_TYPES[helpers.sanitize_url_param(request.GET.get(
-                self.PARAM_STR_PDF_TYPE))])
+                    self.PARAM_STR_PDF_TYPE))])
         elif action == self.PARAM_STR_ACTION_EMAIL_PDF:  # email invoice or receipt pdf
             # set up search
             self.MODELS_TO_SEARCH = {
@@ -216,7 +224,7 @@ class Invoicing(base.AninstanceGenericView):
                 return redirect(self.search_url)
             return self.invoice_view(request, inv_num=helpers.sanitize_url_param(request.GET.get(
                 self.PARAM_STR_ID_INVOICE_NUMBER)), type=PDF_TYPES[helpers.sanitize_url_param(request.GET.get(
-                self.PARAM_STR_PDF_TYPE))], email=True)
+                    self.PARAM_STR_PDF_TYPE))], email=True)
         elif action == self.PARAM_STR_ACTION_EDIT_BUSINESS_ACCOUNT:  # edit business profile
             return self.create_or_edit_account(request, account_id=helpers.sanitize_url_param(
                 request.GET.get(self.PARAM_STR_ID_ACCOUNT_NUMBER)))
@@ -281,10 +289,13 @@ class Invoicing(base.AninstanceGenericView):
                                          initial=initial)
                 # remove primary business account option if already taken (unless edited account IS the primary)
                 try:
-                    Account.objects.get(~Q(account_id=account_id), account_type=Account.ACCOUNT_TYPE[1][0])
+                    Account.objects.get(
+                        ~Q(account_id=account_id), account_type=Account.ACCOUNT_TYPE[1][0])
                     form.fields['account_type'].choices = (
-                        (Account.ACCOUNT_TYPE[0][0], Account.ACCOUNT_TYPE[0][1]),
-                        (Account.ACCOUNT_TYPE[2][0], Account.ACCOUNT_TYPE[2][1])
+                        (Account.ACCOUNT_TYPE[0][0],
+                         Account.ACCOUNT_TYPE[0][1]),
+                        (Account.ACCOUNT_TYPE[2][0],
+                         Account.ACCOUNT_TYPE[2][1])
                     )
                 except Account.DoesNotExist:
                     pass
@@ -324,7 +335,8 @@ class Invoicing(base.AninstanceGenericView):
         return render(request, self.TEMPLATE_NAME, self.context)
 
     def account_view(self, request, account_id=None):
-        self.context.update({'blurb': _('Tap on an account name to view more data')})
+        self.context.update(
+            {'blurb': _('Tap on an account name to view more data')})
         if self.PARAM_STR in request.GET:  # single account
             if request.GET.get(self.PARAM_STR) == helpers.sanitize_url_param(
                     self.PARAM_STR_ACTION_VIEW_SINGLE_ACCOUNT):
@@ -334,14 +346,17 @@ class Invoicing(base.AninstanceGenericView):
                 c = Account.objects.filter(account_type__in=[i[0] for i in Account.ACCOUNT_TYPE[1:]]).order_by(
                     'account_name')
             else:  # if client accounts requested
-                c = Account.objects.filter(account_type=Account.ACCOUNT_TYPE[0][0]).order_by('account_name')
+                c = Account.objects.filter(
+                    account_type=Account.ACCOUNT_TYPE[0][0]).order_by('account_name')
             # work out total pages
             total_pages = ceil(c.count() / self.PAGINATION_ITEMS_PER_PAGE)
             # slice the query as per page to get
             to_display_start = (self.PAGINATION_ITEMS_PER_PAGE * self.requested_page) \
-                               - (self.PAGINATION_ITEMS_PER_PAGE - 1) if not account_id else ''
-            to_display_end = to_display_start + self.PAGINATION_ITEMS_PER_PAGE if not account_id else ''
-            c_slice = c[to_display_start - 1:to_display_end - 1] if not account_id else c[:]
+                - (self.PAGINATION_ITEMS_PER_PAGE - 1) if not account_id else ''
+            to_display_end = to_display_start + \
+                self.PAGINATION_ITEMS_PER_PAGE if not account_id else ''
+            c_slice = c[to_display_start - 1:to_display_end -
+                        1] if not account_id else c[:]
             # format for display
             accounts = []
             if c_slice.exists():
@@ -349,13 +364,16 @@ class Invoicing(base.AninstanceGenericView):
                     # put invoice data in an ordered dict
                     account_data = OrderedDict()
                     for field in Account._meta.get_fields():
-                        if not field.auto_created and not field.is_relation and not field.related_model:  # (Ref:footnote 1)
-                            account_data.update({field.verbose_name: getattr(account, field.name)})
+                        # (Ref:footnote 1)
+                        if not field.auto_created and not field.is_relation and not field.related_model:
+                            account_data.update(
+                                {field.verbose_name: getattr(account, field.name)})
                             # for add account_id for template link as tpl won't get dict key with spaces without iterating
-                            account_data.update({'account_id': getattr(account, 'account_id')})
+                            account_data.update(
+                                {'account_id': getattr(account, 'account_id')})
                     # replace account type with human readable
                     account_data.update({'Account type':
-                                             dict(Account.ACCOUNT_TYPE).get(getattr(account, 'account_type'))})
+                                         dict(Account.ACCOUNT_TYPE).get(getattr(account, 'account_type'))})
                     # add account to accounts list
                     accounts.append(account_data)
                 self.context.update({
@@ -364,7 +382,8 @@ class Invoicing(base.AninstanceGenericView):
                     'pagination': True,
                     'total_pages': range(1, total_pages + 1),
                     'blurb': _('Tap on an account name to view more data') if not account_id else
-                    '{}{}'.format(_('Here is the requested record for '), c[0].account_name),
+                    '{}{}'.format(
+                        _('Here is the requested record for '), c[0].account_name),
                     'right_sidebar_search': True,
                     'edit_account_blurb': _('Edit this account record'),
                     'edit_account_param_str': self.PARAM_STR_ACTION_EDIT_ACCOUNT,
@@ -386,7 +405,8 @@ class Invoicing(base.AninstanceGenericView):
         """
         View to create or edit an invoice
         """
-        error_message = _('The invoice you are looking for does not appear to exist!')
+        error_message = _(
+            'The invoice you are looking for does not appear to exist!')
         try:
             client_record = Account.objects.get(account_id=client_account)
         except Account.DoesNotExist:
@@ -400,7 +420,8 @@ class Invoicing(base.AninstanceGenericView):
                              'date_due': utc.now(),
                              'issued_by': Account.objects.filter(account_type=Account.ACCOUNT_TYPE[1][0])[0].pk})
                 # only show non-retired invoice items for new invoices
-                form.fields['invoice_items'].queryset = InvoiceItem.objects.filter(retired=False)
+                form.fields['invoice_items'].queryset = InvoiceItem.objects.filter(
+                    retired=False)
                 # only show business account types for issued_by
                 form.fields['issued_by'].queryset = Account.objects.filter(
                     account_type__in=[a[0] for a in Account.ACCOUNT_TYPE[1:]])
@@ -411,7 +432,8 @@ class Invoicing(base.AninstanceGenericView):
                     'panel_heading': _('Add an invoice for {}'.format(client_record.account_name)),
                     'invoice_submit_button_text': _('Create invoice')
                 })
-            except IndexError as e:  # exception if no Account object of type OWN_BUSINESS_PRIMARY (no biz defined!)
+            # exception if no Account object of type OWN_BUSINESS_PRIMARY (no biz defined!)
+            except IndexError as e:
                 self.context.update({
                     'invoice_form': None,
                     'error_message': _('You do not appear to have defined your own business account yet!'),
@@ -419,7 +441,8 @@ class Invoicing(base.AninstanceGenericView):
                 })
         elif inv_num:
             # EDIT
-            self.context.update({'invoice_submit_button_text': _('Edit invoice')})
+            self.context.update(
+                {'invoice_submit_button_text': _('Edit invoice')})
             try:
                 _c = Invoice.objects.get(invoice_number=inv_num)
                 # add extra fields
@@ -434,36 +457,50 @@ class Invoicing(base.AninstanceGenericView):
                 form.fields['issued_by'].queryset = Account.objects.filter(
                     account_type__in=[a[0] for a in Account.ACCOUNT_TYPE[1:]])
                 # make any changes to fields - e.g. disabling, changing available choices, etc
-                form.fields['invoice_status'].help_text = _('Available options dependent on current status')
+                form.fields['invoice_status'].help_text = _(
+                    'Available options dependent on current status')
                 form.fields['invoice_number'].widget.attrs['disabled'] = True
-                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[:1]]:  # if existing <= ISSUED
+                # if existing <= ISSUED
+                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[:1]]:
                     # only show non-retired invoice items if invoice not yet ISSUED
-                    form.fields['invoice_items'].queryset = InvoiceItem.objects.filter(retired=False)
-                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[1:]]:  # if existing >= ISSUED
+                    form.fields['invoice_items'].queryset = InvoiceItem.objects.filter(
+                        retired=False)
+                # if existing >= ISSUED
+                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[1:]]:
                     form.fields['date_due'].widget.attrs['disabled'] = True
-                    form.fields['date_due'].help_text = _('Due date cannot be changed once invoice is issued')
+                    form.fields['date_due'].help_text = _(
+                        'Due date cannot be changed once invoice is issued')
                     form.fields['discount_rate'].widget.attrs['disabled'] = True
-                    form.fields['discount_rate'].help_text = _('Discount cannot be changed once invoice is issued')
+                    form.fields['discount_rate'].help_text = _(
+                        'Discount cannot be changed once invoice is issued')
                     form.fields['invoice_items'].widget.attrs['disabled'] = True
-                    form.fields['invoice_items'].help_text = _('Items cannot be changed once invoice is issued')
+                    form.fields['invoice_items'].help_text = _(
+                        'Items cannot be changed once invoice is issued')
                     form.fields['issued_by'].widget.attrs['disabled'] = True
-                    form.fields['issued_by'].help_text = _('Business cannot be selected once invoice is issued')
+                    form.fields['issued_by'].help_text = _(
+                        'Business cannot be selected once invoice is issued')
                     # for >= ISSUED, define field's queryset to only show items already chosen for this invoice
                     form.fields['invoice_items'].queryset = InvoiceItem.objects.filter(
                         id__in=[i.get('item_id') for i in Units.objects.filter(invoice=_c.id).values()])
                     form.fields['tax'].widget.attrs['disabled'] = True
-                    form.fields['tax'].help_text = _('Tax status cannot be changed once invoice is issued')
+                    form.fields['tax'].help_text = _(
+                        'Tax status cannot be changed once invoice is issued')
                     form.fields['invoice_status'].choices = Invoice.INVOICE_STATUS[1:]
-                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[2:]]:  # if existing => SENT
+                # if existing => SENT
+                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[2:]]:
                     form.fields['invoice_status'].choices = Invoice.INVOICE_STATUS[2:]
-                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[3:]]:  # if existing => OVERDUE
+                # if existing => OVERDUE
+                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[3:]]:
                     form.fields['invoice_status'].choices = Invoice.INVOICE_STATUS[3:6]
-                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[4:]]:  # if existing => PAID_PARTIALLY
+                # if existing => PAID_PARTIALLY
+                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[4:]]:
                     form.fields['invoice_status'].choices = Invoice.INVOICE_STATUS[4:6]
-                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[5:]]:  # if existing => PAID_IN_FULL
+                # if existing => PAID_IN_FULL
+                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[5:]]:
                     form.fields['invoice_status'].widget.attrs['disabled'] = True
                     pass
-                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[1:5]]:  # of existing <= PAID_PARTIALLY
+                # of existing <= PAID_PARTIALLY
+                if _c.invoice_status in [s[0] for s in Invoice.INVOICE_STATUS[1:5]]:
                     form.fields['paid_amount'].widget.attrs['disabled'] = False
                 self.context.update({
                     'invoice_form': form,
@@ -492,11 +529,14 @@ class Invoicing(base.AninstanceGenericView):
         # if arriving back at this view via request to email PDF (action=self.PARAM_STR_ACTION_EMAIL_PDF)
         if email:
             if pdf_gen_or_fetch_or_email(invoice_number=inv_num, type=type, email=True):
-                self.context.update({'status_message': _('Email successfully transmitted')})
+                self.context.update(
+                    {'status_message': _('Email successfully transmitted')})
             elif pdf_gen_or_fetch_or_email(invoice_number=inv_num, type=type, email=True) == False:
-                self.context.update({'error_message': _('Email transmission failed!')})
+                self.context.update(
+                    {'error_message': _('Email transmission failed!')})
             else:
-                self.context.update({'error_message': _('Email has already been sent!')})
+                self.context.update(
+                    {'error_message': _('Email has already been sent!')})
         # create query
         i = None
         try:
@@ -514,9 +554,10 @@ class Invoicing(base.AninstanceGenericView):
             # slice the query as per page to get
             if not inv_num:
                 invoices_to_display_start = (self.PAGINATION_ITEMS_PER_PAGE * self.requested_page) \
-                                            - (self.PAGINATION_ITEMS_PER_PAGE - 1)
+                    - (self.PAGINATION_ITEMS_PER_PAGE - 1)
                 invoices_to_display_end = invoices_to_display_start + self.PAGINATION_ITEMS_PER_PAGE
-                i_slice = i[invoices_to_display_start - 1:invoices_to_display_end - 1]
+                i_slice = i[invoices_to_display_start -
+                            1:invoices_to_display_end - 1]
             else:
                 i_slice = i
             # format for display
@@ -580,9 +621,10 @@ class Invoicing(base.AninstanceGenericView):
             # slice the query as per page to get
             if not single_item_id:
                 invoices_to_display_start = (self.PAGINATION_ITEMS_PER_PAGE * self.requested_page) \
-                                            - (self.PAGINATION_ITEMS_PER_PAGE - 1)
+                    - (self.PAGINATION_ITEMS_PER_PAGE - 1)
                 invoices_to_display_end = invoices_to_display_start + self.PAGINATION_ITEMS_PER_PAGE
-                i_slice = i[invoices_to_display_start - 1:invoices_to_display_end - 1]
+                i_slice = i[invoices_to_display_start -
+                            1:invoices_to_display_end - 1]
             else:
                 i_slice = i
             # format for display
@@ -595,11 +637,14 @@ class Invoicing(base.AninstanceGenericView):
                         if not field.auto_created:  # disallow, to avoid adding m2m autocreated fields to other tables
                             # special behaviours for fields
                             if field.name == 'DEFAULT_EXAMPLE':
-                                special_fields.append(None)  # would append any specially processed field here
+                                # would append any specially processed field here
+                                special_fields.append(None)
                             else:  # not processed as special field - just dumped as-is
-                                item_data.update({field.verbose_name: getattr(item, field.name)})
+                                item_data.update(
+                                    {field.verbose_name: getattr(item, field.name)})
                         if field.name == 'id':  # allow id field even though it is autocrated
-                            special_fields.append({'id': getattr(item, field.name)})
+                            special_fields.append(
+                                {'id': getattr(item, field.name)})
                     try:
                         # add items at the end
                         item_data.update(*special_fields)
@@ -636,7 +681,8 @@ class Invoicing(base.AninstanceGenericView):
         View to create or edit an invoice item
         """
         self.context.update({'invoice_item_button': _('Submit item')})
-        error_message = _('The invoice item you are looking for does not appear to exist!')
+        error_message = _(
+            'The invoice item you are looking for does not appear to exist!')
         try:
             existing_item = InvoiceItem.objects.get(id=invoice_item)
         except InvoiceItem.DoesNotExist:
@@ -662,7 +708,8 @@ class Invoicing(base.AninstanceGenericView):
                            self.POST_INVOICE_ITEM_ID_FIELD: invoice_item,
                            }
                 # populate form with existing instance data
-                form = forms.InvoiceItemForm(instance=existing_item, initial=initial)
+                form = forms.InvoiceItemForm(
+                    instance=existing_item, initial=initial)
                 # grab units that have used this item (if any)
                 units_used_in = Units.objects.filter(item=invoice_item)
                 # make any changes to fields - e.g. disabling, changing available choices, etc
@@ -672,7 +719,7 @@ class Invoicing(base.AninstanceGenericView):
                             if field.name != 'retired' and field.name != 'datetime_created':
                                 form.fields[field.name].help_text = _(
                                     '{} cannot be changed once item has been billed'.
-                                        format(field.verbose_name))
+                                    format(field.verbose_name))
                                 form.fields[field.name].disabled = True
                 self.context.update({
                     'invoice_item_form': form,
@@ -690,12 +737,14 @@ class Invoicing(base.AninstanceGenericView):
 
     def pdf_view(self, request, invoice_number, pdf_type):
         # generate view response
-        pdf_file = pdf_gen_or_fetch_or_email(invoice_number=invoice_number, type=pdf_type)
+        pdf_file = pdf_gen_or_fetch_or_email(
+            invoice_number=invoice_number, type=pdf_type)
         if pdf_file:
-            http_response = HttpResponse(pdf_file, content_type='application/pdf')
+            http_response = HttpResponse(
+                pdf_file, content_type='application/pdf')
             http_response['Content-Disposition'] = 'inline; filename="Aninstance_{}_{}.pdf"'.format(PDF_TYPES[
-                                                                                                        pdf_type],
-                                                                                                    invoice_number)
+                pdf_type],
+                invoice_number)
             return http_response
         else:
             return HttpResponse(_('The requested invoice was not available!'),
@@ -733,7 +782,8 @@ class Invoicing(base.AninstanceGenericView):
         return render(request, self.TEMPLATE_NAME, self.context)
 
     def post_edit_account(self, request):
-        account_id = helpers.sanitize_post_data(request.POST.get('account_id', None))
+        account_id = helpers.sanitize_post_data(
+            request.POST.get('account_id', None))
         try:
             existing_record = Account.objects.get(account_id=account_id)
             form = forms.AccountForm(request.POST, request.FILES)
@@ -789,7 +839,8 @@ class Invoicing(base.AninstanceGenericView):
             # update the model instance with the client obj (obtained from the ID, above)
             saved_instance.client = client
             # save the time again manually, because django autosaves instance to utc.now for some obscure reason
-            setattr(saved_instance, 'date_due', invoice_form.cleaned_data.get('date_due'))
+            setattr(saved_instance, 'date_due',
+                    invoice_form.cleaned_data.get('date_due'))
             # SAVE THE MODEL
             saved_instance.save()
             # save the m2m (needs to be done manually, as using intermediary model)
@@ -820,10 +871,12 @@ class Invoicing(base.AninstanceGenericView):
             return render(request, self.TEMPLATE_NAME, self.context)
 
     def post_edit_invoice(self, request):
-        invoice_number = helpers.sanitize_url_param(request.GET.get('invoice_number'))
+        invoice_number = helpers.sanitize_url_param(
+            request.GET.get('invoice_number'))
         self.context.update({'invoice_submit_button_text': _('Edit invoice')})
         try:
-            original_record = Invoice.objects.get(invoice_number=invoice_number)
+            original_record = Invoice.objects.get(
+                invoice_number=invoice_number)
             invoice_form = forms.InvoiceForm(request.POST)
             # populate issued_by
             if invoice_form.is_valid():
@@ -848,14 +901,16 @@ class Invoicing(base.AninstanceGenericView):
                         })
                         return render(request, self.TEMPLATE_NAME, self.context)
                     # manually save because auto saving mysteriously misses some fields due to django wierdness!
-                    current = Invoice.objects.get(invoice_number=invoice_number)
+                    current = Invoice.objects.get(
+                        invoice_number=invoice_number)
                     for k, v in invoice_form.cleaned_data.items():  # iterate through included form fields
                         if k != 'client' and k != 'invoice_items' and k in forms.InvoiceForm.Meta.fields:
                             if v is not None and v is not '':
                                 setattr(current, k, v)  # set the new value
                     current.client = client
                     # save the m2m (needs to be done separately, as using intermediary model)
-                    units = Units.objects.filter(invoice__invoice_number=invoice_number)
+                    units = Units.objects.filter(
+                        invoice__invoice_number=invoice_number)
                     for item_id, qty in updated_item_qty.items():  # for every form item selected (i.e. has a val)
                         try:  # if item in the form and in Units, edit values & save
                             if qty:
@@ -863,7 +918,8 @@ class Invoicing(base.AninstanceGenericView):
                                 u.quantity = qty
                                 u.save()
                             else:
-                                units.get(item_id=item_id).delete()  # delete any with 0 quantity
+                                # delete any with 0 quantity
+                                units.get(item_id=item_id).delete()
                         except Units.DoesNotExist:  # if item does not have a Unit, create and save
                             if qty:
                                 u = Units()
@@ -874,7 +930,8 @@ class Invoicing(base.AninstanceGenericView):
                                 # delete any existing Units for this invoice that aren't in the form
                     if invoice_form['invoice_status'].value() in Invoice.INVOICE_STATUS[:1][0]:
                         # note: only if status <= ISSUED, as if >= ISSUED field disabled so no invoice_items passed
-                        units.filter(~Q(item_id__in=[i for i in updated_item_qty.keys()])).delete()
+                        units.filter(
+                            ~Q(item_id__in=[i for i in updated_item_qty.keys()])).delete()
                         # actions taken if values on certain fields changed
                     # SAVE THE CHANGES TO THE INVOICE
                     try:
@@ -883,7 +940,8 @@ class Invoicing(base.AninstanceGenericView):
                         self.context.update({'error_message': _(
                             'There was a problem updating the invoice: {}. '
                             '<a class="error_link" href="{}">Try again!</a>'.format(
-                                e.message, '?action=edit_invoice&invoice_number={}'.format(invoice_number)
+                                e.message, '?action=edit_invoice&invoice_number={}'.format(
+                                    invoice_number)
                             )),
                             'invoice_form': None})
                         return render(request, self.TEMPLATE_NAME, self.context)
@@ -892,8 +950,8 @@ class Invoicing(base.AninstanceGenericView):
                         pdf_gen_or_fetch_or_email(invoice_number=invoice_number,
                                                   regenerate=True,
                                                   type=PDF_TYPES['receipt'] if current.invoice_status ==
-                                                                               Invoice.INVOICE_STATUS[5][
-                                                                                   0] else
+                                                  Invoice.INVOICE_STATUS[5][
+                                                      0] else
                                                   PDF_TYPES['invoice'])
                     # return the view
                     return redirect('{}?{}={}&{}={}&{}={}'.format(
@@ -942,10 +1000,12 @@ class Invoicing(base.AninstanceGenericView):
                     new.id
                 ))
             else:
-                self.context.update({'error_message': _('There was a problem with submitting the form!')})
+                self.context.update(
+                    {'error_message': _('There was a problem with submitting the form!')})
         except ValidationError as v:
             self.context.update({'error_message': '\n'.join(v)})
-        self.context.update({'invoice_item_form': invoice_item_form})  # returned by default (i.e. if validation failed)
+        # returned by default (i.e. if validation failed)
+        self.context.update({'invoice_item_form': invoice_item_form})
         return render(request, self.TEMPLATE_NAME, self.context)
 
     def post_edit_invoice_item(self, request):
@@ -957,7 +1017,8 @@ class Invoicing(base.AninstanceGenericView):
             invoice_item_form = forms.InvoiceItemForm(request.POST)
             if invoice_item_form.is_valid():
                 try:
-                    used_in_units = Units.objects.filter(item__id=invoice_item_id)
+                    used_in_units = Units.objects.filter(
+                        item__id=invoice_item_id)
                     if invoice_item_form.cleaned_data['retired'] and not used_in_units.exists():
                         existing_record.delete()
                         return redirect('{}?{}={}'.format(
@@ -970,7 +1031,8 @@ class Invoicing(base.AninstanceGenericView):
                         for k, v in invoice_item_form.cleaned_data.items():
                             if k in forms.InvoiceItemForm.Meta.fields:
                                 if v is not None and v is not '':
-                                    setattr(existing_record, k, v)  # set the new value
+                                    # set the new value
+                                    setattr(existing_record, k, v)
                         existing_record.save()
                     return redirect('{}?{}={}&{}={}'.format(
                         request.path,
@@ -1003,6 +1065,8 @@ class Invoicing(base.AninstanceGenericView):
 
 def pdf_gen_or_fetch_or_email(invoice_number=None, type=None, email=None, regenerate=False):
     invoice = Invoice.objects.get(invoice_number=invoice_number)
+    invoice_status = invoice.invoice_status
+
     # generate fake request for Weasyprint (to enable calling of function outwith calling a view)
     factory = RequestFactory()
     url = '{}://{}/{}'.format(Invoicing.DEFAULT_SITE_PROTO,
@@ -1011,13 +1075,14 @@ def pdf_gen_or_fetch_or_email(invoice_number=None, type=None, email=None, regene
                                   Invoicing.PARAM_STR_ACTION_EMAIL_PDF))
     request = factory.get(url, SERVER_NAME=Invoicing.DEFAULT_SITE_FQDN)
     try:
-        if email and (invoice.pdf_invoice or invoice.pdf_receipt):  # if called to email and invoice/receipt exists
-            return _emailer(details={'invoice': invoice, 'type': type, 'request': request})
+        # if called to email and invoice/receipt exists
+        if email and (invoice.pdf_invoice or invoice.pdf_receipt):
+            return _emailer(details={'invoice': invoice, 'type': type, 'request': request, 'invoice_status': invoice_status})
         if type == PDF_TYPES[
-            'invoice'] and invoice.pdf_invoice and not regenerate:  # if called to view & saved invoice exists
+                'invoice'] and invoice.pdf_invoice and not regenerate:  # if called to view & saved invoice exists
             return invoice.pdf_invoice
         elif type == PDF_TYPES[
-            'receipt'] and invoice.pdf_receipt and not regenerate:  # if called to view & saved receipt exists
+                'receipt'] and invoice.pdf_receipt and not regenerate:  # if called to view & saved receipt exists
             return invoice.pdf_receipt
         # if invoice or receipt not saved, or regenerate was True, generate
         invoice_instance_data_dict = invoice_instance_to_dict(invoice)
@@ -1040,7 +1105,8 @@ def pdf_gen_or_fetch_or_email(invoice_number=None, type=None, email=None, regene
             proto = 'https' if request.is_secure() else 'http'
             business_logo = '{}://{}{}{}/{}'.format(proto, request.get_host(),
                                                     settings.MEDIA_URL, LOGO_DIR, str(getattr(
-                    invoice_data.get('Issued by'), 'logo')).split('/')[-1])
+                                                        invoice_data.get('Issued by'), 'logo')).split('/')[-1])
+            print(str(invoice_data.get('Issued by')))
         except AttributeError:
             business_logo = None
         # define context
@@ -1071,7 +1137,7 @@ def pdf_gen_or_fetch_or_email(invoice_number=None, type=None, email=None, regene
         # save
         invoice.save()
         if email:  # if called to email, do that
-            return _emailer(details={'invoice': invoice, 'type': type, 'request': request})
+            return _emailer(details={'invoice': invoice, 'type': type, 'request': request, 'invoice_status': invoice_status})
         return pdf_file  # if called to view, return the pdf file to the calling view
     except Invoice.DoesNotExist:
         return False
@@ -1083,35 +1149,44 @@ def _emailer(details=None):
         if details.get('type') == PDF_TYPES['invoice'] or details.get('type') == PDF_TYPES['invoice_update']:
             # check to ensure email hasn't already been sent if invoice_update not the type & get instance
             try:
-                if not PDF_TYPES['invoice_update']:  # if not update, look for instance with invoice_emailed = False
+                # if not update, look for instance with invoice_emailed = False
+                if not PDF_TYPES['invoice_update']:
                     instance = Invoice.objects.get(invoice_number=details.get('invoice').invoice_number,
                                                    invoice_emailed=False)
                 else:  # if update, don't worry about the emailed status - just grab the instance to email again
-                    instance = Invoice.objects.get(invoice_number=details.get('invoice').invoice_number)
+                    instance = Invoice.objects.get(
+                        invoice_number=details.get('invoice').invoice_number)
             except Invoice.DoesNotExist:  # returns None if already sent
                 return None
             # rather than use a string, render the message from a template
             message_html = render_to_string('invoicing/snippets/invoice_email.html',
                                             {'client': details.get('invoice').client.company_name or
-                                                       details.get('invoice').client.account_name,
+                                             details.get(
+                                                 'invoice').client.account_name,
                                              'invoice_number': details.get('invoice').invoice_number,
                                              'business': details.get('invoice').issued_by.company_name
                                              })
             # convert html to plaintext (markdown)
             message_plaintext = html2text.html2text(message_html)
-            subject = __('{} invoice #{}'.format(details.get('invoice').issued_by.company_name,
-                                                 details.get('invoice').invoice_number))
+            subject = __('{} from {}: #{}'.format(
+                'INVOICE' if details.get('invoice_status') != 'OVERDUE' else 'INVOICE OVERDUE REMINDER',
+                details.get('invoice').issued_by.company_name,
+                details.get('invoice').invoice_number)
+            )
+            print(subject)
             if message_html and message_plaintext and subject:
                 msg = EmailMultiAlternatives(
                     subject=subject,
                     body=message_plaintext,
                     to=["{}<{}>".format(details.get('invoice').client.company_name or
-                                        details.get('invoice').client.account_name,
+                                        details.get(
+                                            'invoice').client.account_name,
                                         details.get('invoice').client.contact_email)],
                     reply_to=["{}<{}>".format(details.get('invoice').issued_by.company_name,
                                               details.get('invoice').issued_by.contact_email)],
                 )
-                msg.attach_file(details.get('invoice').pdf_invoice.path, mimetype='application/pdf')
+                msg.attach_file(details.get(
+                    'invoice').pdf_invoice.path, mimetype='application/pdf')
                 msg.attach_alternative(message_html, 'text/html')
                 msg.track_clicks = True
                 if settings.INVOICING.get('EMAIL_ACTIVE', False):  # if email activated
@@ -1123,7 +1198,8 @@ def _emailer(details=None):
                         # return success page
                         return True
                     except smtplib.SMTPException as e:
-                        pass  # email failed to send (defaults to returning False)
+                        # email failed to send (defaults to returning False)
+                        pass
         # RECEIPT
         elif details.get('type') == PDF_TYPES['receipt']:
             # check to ensure email hasn't already been sent & get instance
@@ -1134,25 +1210,28 @@ def _emailer(details=None):
                 return None
             message_html = render_to_string('invoicing/snippets/receipt_email.html',
                                             {'client': details.get('invoice').client.company_name or
-                                                       details.get('invoice').client.account_name,
+                                             details.get(
+                                                 'invoice').client.account_name,
                                              'invoice_number': details.get('invoice').invoice_number,
                                              'business': details.get('invoice').issued_by.company_name
                                              })
             # convert html to plaintext (markdown)
             message_plaintext = html2text.html2text(message_html)
-            subject = __('{} receipt for invoice #{}'.format(details.get('invoice').issued_by.company_name,
-                                                             details.get('invoice').invoice_number))
+            subject = __('RECEIPT from {}: #{}'.format(details.get('invoice').issued_by.company_name,
+                                                       details.get('invoice').invoice_number))
             if message_html and message_plaintext and subject:
                 msg = EmailMultiAlternatives(
                     subject=subject,
                     body=message_plaintext,
                     to=["{}<{}>".format(details.get('invoice').client.company_name or
-                                        details.get('invoice').client.account_name,
+                                        details.get(
+                                            'invoice').client.account_name,
                                         details.get('invoice').client.contact_email)],
                     reply_to=["{}<{}>".format(details.get('invoice').issued_by.company_name,
                                               details.get('invoice').issued_by.contact_email)],
                 )
-                msg.attach_file(details.get('invoice').pdf_receipt.path, mimetype='application/pdf')
+                msg.attach_file(details.get(
+                    'invoice').pdf_receipt.path, mimetype='application/pdf')
                 msg.attach_alternative(message_html, 'text/html')
                 msg.track_clicks = True
                 if settings.INVOICING.get('EMAIL_ACTIVE', False):  # if email activated
@@ -1164,7 +1243,8 @@ def _emailer(details=None):
                         # return success page
                         return True
                     except smtplib.SMTPException as e:
-                        pass  # email failed to send (defaults to returning False)
+                        # email failed to send (defaults to returning False)
+                        pass
     # return failure page
     return False
 
@@ -1180,23 +1260,21 @@ def invoice_sums(invoice_data=None, invoice=None):
 
     # discount maths
     def apply_discount(subtotal, rate):
-        return Decimal(subtotal - (subtotal * Decimal(rate / 100).quantize(TWOPLACES,
-                                                                           rounding=decimal.ROUND_HALF_DOWN))).quantize(
+        return Decimal(subtotal - (subtotal * Decimal(rate / 100).quantize(TWOPLACES, rounding=decimal.ROUND_HALF_DOWN))).quantize(
             TWOPLACES, rounding=decimal.ROUND_HALF_DOWN)
 
     # tax maths
     def add_tax(subtotal, rate):
         # note: rate param is the item's tax rating. Invoice tax rating is invoice_data.get('Tax')
-        if invoice_data.get('Tax status') == 'STANDARD':  # invoice not eligible for reduced; standard rate applied
+        # invoice not eligible for reduced; standard rate applied
+        if invoice_data.get('Tax status') == 'STANDARD':
             return Decimal(subtotal + (Decimal(subtotal * Decimal(
-                settings.INVOICING.get('TAX').get('STANDARD') / 100).quantize(TWOPLACES,
-                                                                              rounding=decimal.ROUND_HALF_DOWN))).quantize(
+                settings.INVOICING.get('TAX').get('STANDARD') / 100).quantize(TWOPLACES, rounding=decimal.ROUND_HALF_DOWN))).quantize(
                 TWOPLACES, rounding=decimal.ROUND_HALF_DOWN)).quantize(TWOPLACES, rounding=decimal.ROUND_HALF_DOWN)
         elif invoice_data.get(
                 'Tax status') == 'REDUCED':  # + standard, reduced or zero rate, as per item's 'rate' (param)
             return Decimal(subtotal + (Decimal(subtotal * Decimal(
-                settings.INVOICING.get('TAX').get(rate) / 100).quantize(TWOPLACES,
-                                                                        rounding=decimal.ROUND_HALF_DOWN))).quantize(
+                settings.INVOICING.get('TAX').get(rate) / 100).quantize(TWOPLACES, rounding=decimal.ROUND_HALF_DOWN))).quantize(
                 TWOPLACES, rounding=decimal.ROUND_HALF_DOWN)).quantize(TWOPLACES, rounding=decimal.ROUND_HALF_DOWN)
         elif invoice_data.get('Tax status') == 'NONE':  # don't + any tax
             return subtotal
@@ -1213,8 +1291,8 @@ def invoice_sums(invoice_data=None, invoice=None):
                                })
             try:  # add results of maths to the data dict
                 items_data[count].update({'item_total':
-                                              Decimal(i.item.price * i.quantity).quantize(TWOPLACES,
-                                                                                          rounding=decimal.ROUND_HALF_DOWN)})
+                                          Decimal(i.item.price * i.quantity).quantize(TWOPLACES,
+                                                                                      rounding=decimal.ROUND_HALF_DOWN)})
                 items_data[count].update(
                     {'item_total_less_discount': apply_discount(subtotal=items_data[count].get('item_total'),
                                                                 rate=invoice_data.get(
@@ -1222,7 +1300,8 @@ def invoice_sums(invoice_data=None, invoice=None):
                                                                 )})
                 items_data[count].update(
                     {'item_total_plus_tax': add_tax(subtotal=items_data[count].get('item_total_less_discount'),
-                                                    rate=items_data[count].get('tax'),
+                                                    rate=items_data[count].get(
+                                                        'tax'),
                                                     )})
             except Exception as e:
                 print('Error adding calc results to data dictionary: {}'.format(e))
@@ -1230,15 +1309,19 @@ def invoice_sums(invoice_data=None, invoice=None):
         items_total = Decimal(sum(i.get('item_total', 0) for i in items_data))
         invoice_data.update({_('Items total'): items_total})
         # after discount
-        items_total_less_discount = Decimal(sum(i.get('item_total_less_discount', 0) for i in items_data))
-        invoice_data.update({_('Total after discount'): items_total_less_discount})
+        items_total_less_discount = Decimal(
+            sum(i.get('item_total_less_discount', 0) for i in items_data))
+        invoice_data.update(
+            {_('Total after discount'): items_total_less_discount})
         # after tax
-        items_total_plus_tax = Decimal(sum(i.get('item_total_plus_tax', 0) for i in items_data))
+        items_total_plus_tax = Decimal(
+            sum(i.get('item_total_plus_tax', 0) for i in items_data))
         invoice_data.update({_('Total after tax'): items_total_plus_tax})
         # after total paid
         if invoice:
             try:
-                invoice_data.update({_('Amount outstanding'): items_total_plus_tax - Decimal(invoice.paid_amount)})
+                invoice_data.update(
+                    {_('Amount outstanding'): items_total_plus_tax - Decimal(invoice.paid_amount)})
             except AttributeError:
                 pass
     # return
@@ -1253,15 +1336,18 @@ def invoice_instance_to_dict(invoice=None):
         if not field.auto_created:  # allow field.is_relation and field.related_model here, for inv. items
             # special behaviours for fields
             if field.name == 'invoice_items':
-                invoice_items = Units.objects.filter(invoice__invoice_number=invoice.invoice_number)
+                invoice_items = Units.objects.filter(
+                    invoice__invoice_number=invoice.invoice_number)
                 if invoice_items.exists():
                     items = [item for item in invoice_items.iterator()]
                     special_fields.append({field.verbose_name: items})
             elif field.name == 'invoice_status':  # switch invoice.invoice_status with it's human-readable value
-                invoice_data.update({'Invoice status': dict(Invoice.INVOICE_STATUS)[invoice.invoice_status]})
+                invoice_data.update({'Invoice status': dict(
+                    Invoice.INVOICE_STATUS)[invoice.invoice_status]})
             # default behaviour
             else:  # not processed as special field - just dumped as-is
-                invoice_data.update({field.verbose_name: getattr(invoice, field.name)})
+                invoice_data.update(
+                    {field.verbose_name: getattr(invoice, field.name)})
     try:
         # add special behaviour items (defined above and not added yet) at the end of dict
         invoice_data.update(*special_fields)
