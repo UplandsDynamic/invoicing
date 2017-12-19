@@ -1,3 +1,4 @@
+django==1.11.8
 djangorestframework
 django-bootstrap3
 django-anymail[postmark]
