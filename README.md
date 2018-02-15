@@ -6,9 +6,7 @@
 **Demo Details**
 ----------------
 
-This is the code for a working demo of the Aninstance Invoicing application, as running here:
-
-https://invoicing.aninstance.com
+This is the code for a working demo of the Aninstance Invoicing application.:
 
 The application is intended to be distributed and deployed using Docker.
 
